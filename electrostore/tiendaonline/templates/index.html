@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>ELECTRO STORE</title>
+{% endblock %}
+
+{% block content %}
+    <h1>HOLA!!! {{titulo}}</h1>
+
+    {% load static %}
+    <img src="{% static 'img/kit-arduino-mega.jpg' %}">
+{% endblock %}
