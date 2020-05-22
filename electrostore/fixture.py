@@ -1,6 +1,7 @@
 import json
+
 from random import randrange
-from electrostore.models import Usuario
+from tiendaonline.models import Usuario
 
 with open('USUARIOS.json', 'r') as fp:
     usuarios = json.load(fp)
