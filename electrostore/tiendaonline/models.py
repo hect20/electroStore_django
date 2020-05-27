@@ -5,7 +5,7 @@ class Categoria(models.Model):
     nombre= models.CharField(max_length=30)
 
 class Usuario(models.Model):
-    email= models.EmailField(max_length=40)
+    email= models.EmailField(max_length=50)
     password= models.CharField(max_length=30)
     nombre= models.CharField(max_length=30)
     apellido= models.CharField(max_length=20)
