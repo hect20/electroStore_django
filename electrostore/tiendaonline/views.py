@@ -8,3 +8,8 @@ def index(request):
         #'producto': model.producto ej?
     }
     return render(request, 'index.html', context)
+
+
+
+def categ_prod (request):
+    return render (request,"categoria_producto.html")
