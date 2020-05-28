@@ -5,7 +5,7 @@ class Categoria(models.Model):
     nombre= models.CharField(max_length=30)
 
 class Usuario(models.Model):
-    email= models.EmailField(max_length=40)
+    email= models.EmailField(max_length=50)
     password= models.CharField(max_length=30)
     nombre= models.CharField(max_length=30)
     apellido= models.CharField(max_length=20)
@@ -19,7 +19,6 @@ class Producto(models.Model):
     fecha_hora= models.DateField()
     usuario= models.ManyToManyField(Usuario)
     categoria= models.ForeignKey(Categoria, null=False, blank= False, on_delete= models.CASCADE)
-
 
 
 class Foto(models.Model):
