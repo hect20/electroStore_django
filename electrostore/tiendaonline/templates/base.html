@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" data-auto-replace-svg="nest"></script>
 
+  <title> {% block title %} {% endblock %} </title>
 </head>
 
 <body>
@@ -83,8 +84,8 @@
     <!--</div>   -->
   </header>
 
-  <!-- Footer -->
-  
+  {% block content %}
+  {% endblock %}
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
