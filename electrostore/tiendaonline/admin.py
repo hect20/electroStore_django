@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .models import Categoria, Usuario, Producto, Foto, Compra, Itemvendido, Administrador
 
 # Register your models here.

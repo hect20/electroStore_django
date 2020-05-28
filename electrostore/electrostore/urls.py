@@ -16,12 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-import tiendaonline
-
-from tiendaonline import views
+from tiendaonline.views import index, categ_prod
 
 
 urlpatterns = [
-    path('', tiendaonline.views.index, name='index'),
+    path('home/', index),
     path('admin/', admin.site.urls),
+    path('categoria-producto/',categ_prod),
 ]
