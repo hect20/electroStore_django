@@ -26,7 +26,7 @@ urlpatterns = [
     path('home/', tiendaonline.views.index, name='index'),
     path('admin/', admin.site.urls),
     path('producto/' ,tiendaonline.views.producto_view, name='producto'),
-    
+    path('listar/',tiendaonline.views.listaProductos.as_view(), name='listaproducto'),
     #path('lista-productos/',view.lista_productos.as_view()),
     
     
