@@ -8,6 +8,8 @@ from .forms import Productoform
 from tiendaonline.models import Producto
 
 
+from django.views.generic.base import TemplateView
+
 # Create your views here.
 
 def index(request):
