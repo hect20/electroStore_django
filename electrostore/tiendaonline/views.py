@@ -8,7 +8,7 @@ from .forms import Productoform
 from tiendaonline.models import Producto
 
 
-from django.views.generic.base import TemplateView
+
 
 # Create your views here.
 
@@ -30,9 +30,3 @@ def producto_view(request):
 
 	  return render(request, 'producto_form.html',{'form': form}) 
 
-class lista_productos (TemplateView):
-	template_name= 'lista_productos.html'
-	def get_context_date(self,**kwargs):
-		context = super().get_context_date(**kwargs)
-		context['productos']= Producto.objects.all()
-		return context
