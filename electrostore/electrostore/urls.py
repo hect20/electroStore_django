@@ -17,23 +17,17 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 
-#import tiendaonline
+import tiendaonline
 
-#from tiendaonline import views
+import tiendaonline.views as view
 
-#agregado#
-from tiendaonline.views import index, producto_view
 
 urlpatterns = [
-    path('home/', index),
+    path('home/', tiendaonline.views.index, name='index'),
     path('admin/', admin.site.urls),
-    path('producto/', producto_view),
-#fin de agregado#
-
-#urlpatterns = [
-#    path('home/', tiendaonline.views.index, name='index'),
-#    path('admin/', admin.site.urls),
-#    path('producto/' ,tiendaonline.views.producto_view, name='producto'),
+    path('producto/' ,tiendaonline.views.producto_view, name='producto'),
+    
+    path('lista-productos/',view.lista_productos.as_view()),
     
     
 ]

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<table>
+    <thead>
+    <tr>
+      <th>Month</th>
+      <th>Savings</th>
+    </tr>
+    
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>{{producto.titulo}}</td>
+            <td>{{producto.descripcion}}</td>
+            <td>{{producto.precio}}</td>
+            <td>{{producto.promocion}}</td>
+            <td>{{producto.fecha_hora}}</td>
+            <td>{{producto.usuario}}</td>
+            <td>{{producto.categoria}}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+  
+{% endblock %}

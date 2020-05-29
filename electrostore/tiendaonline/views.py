@@ -4,6 +4,10 @@ from django.shortcuts import redirect
 
 from .forms import Productoform
 
+
+from tiendaonline.models import Producto
+
+
 # Create your views here.
 
 def index(request):
@@ -23,3 +27,10 @@ def producto_view(request):
 	  	form = Productoform(request.POST)
 
 	  return render(request, 'producto_form.html',{'form': form}) 
+
+class lista_productos (TemplateView):
+	template_name= 'lista_productos.html'
+	def get_context_date(self,**kwargs):
+		context = super().get_context_date(**kwargs)
+		context['productos']= Producto.objects.all()
+		return context
