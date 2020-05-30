@@ -4,11 +4,11 @@ from django.shortcuts import redirect
 
 from .forms import Productoform
 
-
+#hector
 from tiendaonline.models import Producto
+from django.views.generic import ListView
 
-
-
+#fin hector
 
 # Create your views here.
 
@@ -24,9 +24,19 @@ def producto_view(request):
 	  	form = Productoform(request.POST)
 	  	if form.is_valid():
 	  		form.save()
-	  	return redirect('index')
+	  	return redirect('producto')
 	  else: 
 	  	form = Productoform(request.POST)
 
 	  return render(request, 'producto_form.html',{'form': form}) 
 
+##
+class listaProductos(ListView):
+	model = Producto
+	template_name= 'lista_productos.html'
+
+class resultadoBusquedas(ListView):
+	model = Producto
+	template_name= 'search_results.html'
+
+##
