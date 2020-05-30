@@ -30,10 +30,13 @@ def producto_view(request):
 
 	  return render(request, 'producto_form.html',{'form': form}) 
 
-##hector
+##
 class listaProductos(ListView):
 	model = Producto
 	template_name= 'lista_productos.html'
 
+class resultadoBusquedas(ListView):
+	model = Producto
+	template_name= 'search_results.html'
 
-##fin hector
+##
