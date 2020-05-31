@@ -8,7 +8,6 @@ from .forms import Productoform
 from tiendaonline.models import Producto
 from django.views.generic import ListView
 
-#fin hector
 
 # Create your views here.
 
@@ -27,16 +26,18 @@ def producto_view(request):
 	  	return redirect('producto')
 	  else: 
 	  	form = Productoform(request.POST)
-
 	  return render(request, 'producto_form.html',{'form': form}) 
 
-##
 class listaProductos(ListView):
 	model = Producto
 	template_name= 'lista_productos.html'
 
-class resultadoBusquedas(ListView):
-	model = Producto
-	template_name= 'search_results.html'
+
+
+
+
+
+
+
 
 ##

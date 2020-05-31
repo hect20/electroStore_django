@@ -28,6 +28,7 @@ class Producto(models.Model):
     categoria= models.ForeignKey(Categoria, null=False, blank= False, on_delete= models.CASCADE)
     def __str__ (self):
         return self.titulo
+   
     
 
 
