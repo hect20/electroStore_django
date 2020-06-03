@@ -7,8 +7,8 @@
         <form method="GET">
             <div id="custom-search-input">
                 <div class="input-group col-md-12">
-                    <input type="text" class="form-control" placeholder="Buscar" name="buscar">
-                    span.input-group-list
+                    <input type="text" class="form-control" placeholder="Buscar" name="buscar" value="{{request.GET.buscar}}">
+                   
                     <span class="input-group-list">
                         <i class="icon icon-search"></i>
                         <button type="submit" class="boton btn-successs">Buscar</button>
@@ -19,6 +19,22 @@
         </form>
     </div>
 </div>
+
+
+    {% for producto in productos %}
+        <div class="post-preview">
+        <a href="">
+            <h2 class="post-title">
+            {{ producto.titulo }}
+            </h2>
+            <h2 class="text-list-inline">
+                {{ producto.descripcion }}
+            </h2>
+        </a>
+        
+        </div>
+        <hr>
+    {% endfor %}
 
 
 ##

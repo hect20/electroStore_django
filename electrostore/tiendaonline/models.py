@@ -26,6 +26,10 @@ class Producto(models.Model):
     fecha_hora= models.DateField(auto_now=True)
     usuario= models.ManyToManyField(Usuario)
     categoria= models.ForeignKey(Categoria, null=False, blank= False, on_delete= models.CASCADE)
+    
+    #agregado para evitar advertencia Visual studio code
+    #objects = models.Manager()
+    #
     def __str__ (self):
         return self.titulo
    

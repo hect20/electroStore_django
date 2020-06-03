@@ -4,8 +4,9 @@ from django.shortcuts import redirect
 
 from .forms import Productoform
 
+from django.db.models import Q
 #hector
-from tiendaonline.models import Producto
+from .models import Producto
 from django.views.generic import ListView
 
 
@@ -34,10 +35,12 @@ class listaProductos(ListView):
 
 
 
+def buscarProducto(request):
+	queryset= request.GET.get("buscar")
+	productos= Producto.objects.filter()
+	if queryset:
+		 productos= Producto.objects.filter(
+			 Q(titulo = queryset)
 
-
-
-
-
-
-##
+		 ).distinct()
+	return render(request,'search_results.html',{'productos':productos})
