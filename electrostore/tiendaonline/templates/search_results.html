@@ -20,22 +20,24 @@
     </div>
 </div>
 
-
+{% if productos%}
     {% for producto in productos %}
         <div class="post-preview">
         <a href="">
             <h2 class="post-title">
-            {{ producto.titulo }}
+            Producto: {{ producto.titulo }}
             </h2>
             <h2 class="text-list-inline">
-                {{ producto.descripcion }}
+               Descripcion: {{ producto.descripcion }}
             </h2>
         </a>
         
         </div>
         <hr>
     {% endfor %}
-
+    {% else %}
+        <h1>No encontramos su Producto</h1>
+{%endif%}
 
 ##
 

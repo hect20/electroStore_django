@@ -29,3 +29,6 @@ class Productoform(forms.ModelForm):
 			'categoria': forms.Select(attrs={'class':'form-control'}),	
 		}
 
+
+#class Busquedaform(form.ModelForm):
+
