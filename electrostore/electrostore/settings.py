@@ -55,7 +55,7 @@ ROOT_URLCONF = 'electrostore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [], #os.path.join(BASE_DIR, 'templates'),
+        'DIRS': [os.path.join(BASE_DIR,'TEMPLATES')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,10 +101,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+LOGIN_URL = '/inicia-sesion/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'es-ar'
+LANGUAGE_CODE = 'en-ar'
 
 TIME_ZONE = 'America/Buenos_Aires'
 
