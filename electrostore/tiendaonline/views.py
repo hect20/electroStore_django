@@ -100,18 +100,19 @@ from .forms import Productoform2
 #devuelve todos los obj de la clase Producto
 from django.views import generic
 from tiendaonline.models import Producto, Categoria
-#class ProductosView(generic.ListView):
- #   model = Producto
-  #  paginate_by = 20
-   # template_name = 'productos1.html'
+
+class ProductosView(generic.ListView):
+    model = Producto
+    paginate_by = 20
+    template_name = 'productos1.html'
 
 
-#class ListadoProductos(TemplateView):
- #   template_name = 'productos1.html'
-  #  def get_context_data(self, **kwargs):
-   #     context= super().get_context_data(**kwargs)
-    #    context['productos']=Producto.objects.all()
-     #   return context
+class ListadoProductos(TemplateView):
+    template_name = 'productos1.html'
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['productos']=Producto.objects.all()
+        return context
 
 
 def productos(request): 
