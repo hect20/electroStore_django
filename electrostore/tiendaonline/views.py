@@ -35,20 +35,20 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-###########################################
 
+#carga de productos
 class producto_view(CreateView):
 	template_name= 'producto_form.html'
 	form_class= Productoform
 	success_url= '/producto/'
 
-###########################################3
+#lista de todos los productos
 class listaProductos(ListView):
 	model = Producto
 	template_name= 'lista_productos.html'
 
 
-
+#buscar un producto
 def buscarProducto(request):
 	queryset= request.GET.get("buscar")
 	productos= Producto.objects.all()
