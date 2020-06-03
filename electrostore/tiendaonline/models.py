@@ -29,7 +29,7 @@ class Producto(models.Model):
     
     #agregado para evitar advertencia Visual studio code
     #objects = models.Manager()
-    #
+    
     def __str__ (self):
         return self.titulo
    
