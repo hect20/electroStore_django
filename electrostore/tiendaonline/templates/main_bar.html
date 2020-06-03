@@ -10,18 +10,29 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
         
-              <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <form class="navbar-nav list-inline  mx-auto">
-                  <input class="form-control mx-xs-2" type="search" placeholder="Buscar Producto" aria-label="Search">
-                  <button class="btn btn-outline-success mx-2 my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
-              </div>
+              <div class="container-fluid">
+                <div class="col-sm-12 search">
+                    <form method="GET">
+                        <div id="custom-search-input">
+                            <div class="input-group col-sm-12">
+                                <input type="text" class="form-control" placeholder="Buscar" name="buscar" value="{{request.GET.buscar}}">
+                               
+                                <span class="input-group-list">
+                                  <button class="btn btn-outline-success my-2 my-sm-0 mx-1" type="submit">Buscar</button>
+                                    <!--<button type="submit" class="boton btn-successs">Buscar</button>-->
+                                </span>
+            
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         
               <div class="collapse mr-md-0 navbar-collapse" id="navbarTogglerDemo01">
         
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Iniciar Sesion</a>
+                    <a class="nav-link" href="#">IniciarSesion</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Registrarse</a>
