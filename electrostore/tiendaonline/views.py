@@ -5,7 +5,7 @@ from .forms import Productoform, ProductoDetalle_form
 #hector
 from django.views.generic import ListView,CreateView
 from django.db.models import Q
-from .models import Producto
+from .models import Producto, Foto
 
 
 
@@ -57,7 +57,7 @@ def buscarProducto(request):
 	return render(request,'search_results.html',{'productos':productos})
 
 def detalleProducto(request,id):
-	
+	imagenes= Foto.objects.filter(producto=id)
 	producto= get_object_or_404(Producto, pk=id)
 	if request.method == "POST":
 		formulario= ProductoDetalle_form(request.POST, instance=producto)
@@ -67,7 +67,7 @@ def detalleProducto(request,id):
 			return redirect ('home')
 	else:
 		formulario = ProductoDetalle_form(instance=producto)
-	return render(request,'productodetalle.html',{'producto':producto})
+	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes})
 	
 	
 	

@@ -5,8 +5,10 @@
 <form class="post-form" method="post">
     
     {% csrf_token %} 
-    {{ producto }}
-    
+    {{ producto.titulo }}
+    {{ producto.descripcion }}
+    {{imagenes.nombreArchivo}}
+  
     <br/>
     <input type="submit" class="btn btn-sm btn-success" value="Agregar">
 </form>
