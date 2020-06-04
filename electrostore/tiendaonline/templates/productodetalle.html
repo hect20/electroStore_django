@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% block title %} Producto Elegido {%endblock%}
+
+{% block content %}
+<form class="post-form" method="post">
+    
+    {% csrf_token %} 
+    {{ producto }}
+    
+    <br/>
+    <input type="submit" class="btn btn-sm btn-success" value="Agregar">
+</form>
+
+
+{% endblock %}

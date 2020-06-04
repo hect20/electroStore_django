@@ -29,8 +29,7 @@ class Producto(models.Model):
     
     #agregado para evitar advertencia VSC
     objects = models.Manager()
-    def __str__ (self):
-        return self.titulo
+    
 
 class Foto(models.Model):
     nombreArchivo= models.CharField(max_length=40)

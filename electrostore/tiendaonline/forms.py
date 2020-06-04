@@ -12,6 +12,11 @@ class Productoform(forms.ModelForm):
 			'promocion',
 			'categoria',
 		]
-		
-#class Busquedaform(form.ModelForm):
+
+class ProductoDetalle_form(forms.ModelForm):
+	class Meta:
+		model= Producto
+		fields=('titulo','descripcion','precio')
+
+
 

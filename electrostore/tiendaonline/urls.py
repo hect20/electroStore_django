@@ -12,6 +12,8 @@ urlpatterns = [
     path('herramientas/',views.herramientas, name='herramientas'),
     path('componentes/',views.componentes, name='componentes'),
     path('kits/',views.kits, name='kits'),
+
+    path('detalle-producto/<int:id>/',views.detalleProducto, name='detalleProducto'),
     
 
 ]
