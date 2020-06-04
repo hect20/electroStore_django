@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from django.shortcuts import redirect
+#from django.shortcuts import redirect
 from .forms import Productoform
 
 #hector
