@@ -27,14 +27,10 @@ class Producto(models.Model):
     usuario= models.ManyToManyField(Usuario)
     categoria= models.ForeignKey(Categoria, null=False, blank= False, on_delete= models.CASCADE)
     
-    #agregado para evitar advertencia Visual studio code
-    #objects = models.Manager()
-    
+    #agregado para evitar advertencia VSC
+    objects = models.Manager()
     def __str__ (self):
         return self.titulo
-   
-    
-
 
 class Foto(models.Model):
     nombreArchivo= models.CharField(max_length=40)
