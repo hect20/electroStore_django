@@ -34,7 +34,8 @@ class Producto(models.Model):
 class Foto(models.Model):
     nombreArchivo= models.CharField(max_length=40)
     producto= models.ForeignKey(Producto, null=False, blank= False, on_delete= models.CASCADE)
-    
+    #agregado
+    objects=models.Manager()
 
     def __str__(self):
         return self.nombreArchivo

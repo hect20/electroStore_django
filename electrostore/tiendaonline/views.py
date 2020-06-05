@@ -57,17 +57,20 @@ def buscarProducto(request):
 	return render(request,'search_results.html',{'productos':productos})
 
 def detalleProducto(request,id):
-	imagenes= Foto.objects.filter(producto=id)
+
 	producto= get_object_or_404(Producto, pk=id)
 	if request.method == "POST":
 		formulario= ProductoDetalle_form(request.POST, instance=producto)
+		
 		if formulario.is_valid():
 			producto = formulario.save(commit=False)
+			
 			producto.save()
+			
 			return redirect ('home')
 	else:
 		formulario = ProductoDetalle_form(instance=producto)
-	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes})
+	return render(request,'productodetalle.html',{'producto':producto})
 	
 	
 	

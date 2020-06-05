@@ -18,6 +18,4 @@ class ProductoDetalle_form(forms.ModelForm):
 		model= Producto
 		fields=('titulo','descripcion','precio')
 	
-		
-
 
