@@ -5,13 +5,13 @@
 {% block content %}
 <form class="post-form" method="post">
     
-    {% csrf_token %} 
-    {{ producto.titulo }}
-    {{ producto.descripcion }}
+    {% csrf_token %}
+    <h4>Titulo: </h4> {{ producto.titulo }}
+    <h4>Descripcion: </h4> {{ producto.descripcion }}
+    <hr>
     {% for imagen in imagenes %}
     <tr>
-        
-        <td> <img src="{% static 'img/imagen.nombreArchivo' %}" alt=""> </td>
+        <td> {{imagen.nombreArchivo}} </td>
         
 
     </tr>
