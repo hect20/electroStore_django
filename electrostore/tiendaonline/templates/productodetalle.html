@@ -9,16 +9,16 @@
     <h4>Titulo: </h4> {{ producto.titulo }}
     <h4>Descripcion: </h4> {{ producto.descripcion }}
     <hr>
-    {% for imagen in imagenes %}
-    <tr>
-        <td> {{imagen.nombreArchivo}} </td>
-        
-
-    </tr>
+    {% for image in imagenes %}
+    
+    <a href="">
+     <img src="{% static 'img/{{image.nombreArchivo}}' %}' " alt="">   
+    </a>
+    
     {% endfor %}
   
     <br/>
-    <input type="submit" class="btn btn-sm btn-success" value="Agregar">
+    <input type="submit" class="btn btn-sm btn-success" value="Agregar al Carro">
 </form>
 
 
