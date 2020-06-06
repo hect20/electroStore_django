@@ -37,8 +37,8 @@ class Foto(models.Model):
     #agregado
     objects=models.Manager()
 
-    def __str__(self):
-        return self.nombreArchivo
+    #def __str__(self):
+     #   return self.nombreArchivo
 
 class Compra(models.Model):
     fecha_hora= models.DateField(auto_now=True)
