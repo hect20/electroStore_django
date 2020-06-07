@@ -21,7 +21,7 @@ class Productoform(forms.ModelForm):
 		}
 		widgets={
 			'titulo' : forms.TextInput(attrs={'class':'form-control'}),
-			'descripcion': forms.TextInput(attrs={'class':'form-control'}),
+			'descripcion': forms.Textarea(attrs={'class':'form-control'}),
 			'precio': forms.TextInput(attrs={'class':'form-control'}),
 			'promocion': forms.TextInput(attrs={'class':'form-control'}),
 			#'fecha_hora': forms.TextInput(attrs={'class':'form-control'}),
