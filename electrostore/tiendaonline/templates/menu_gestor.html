@@ -1,0 +1,30 @@
+<!-- gestor:
+        categoria: crear, editar y borrar (si no hay prod vinculado)
+        producto: crear, editar y borrar
+    gerente:
+        idem gestor
+        resumen de ventas
+            por mes particular
+            detalle de cada venta
+-->
+<html>
+    <body>
+    
+        <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            {% if request.user.is_staff %}
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            {% endif %}
+            </li>
+          </ul>
+    </body>
+</html>

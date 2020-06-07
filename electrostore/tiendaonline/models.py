@@ -38,9 +38,12 @@ class Producto(models.Model):
     fecha_hora= models.DateField()
     usuario= models.ManyToManyField(Usuario)
     categoria= models.ForeignKey(Categoria, null=False, blank= False, on_delete= models.CASCADE)
+    
+    objects= models.Manager()
 
-#    def __str__(self):
-#            return self.titulo
+    def __str__(self):
+            return self.titulo
+        
 
 class Foto(models.Model):
     nombreArchivo= models.CharField(max_length=40)

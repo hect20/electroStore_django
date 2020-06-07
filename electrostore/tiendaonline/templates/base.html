@@ -9,22 +9,25 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- {% load static %} -->
+  <!-- {% load static %} -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" data-auto-replace-svg="nest"></script>
-  
+
   <title> {% block title %} {% endblock %} </title>
-  
+
 </head>
 
 <body>
-  
+
   {% include "main_bar.html" %}
+  {% if request.user.is_authenticated %}
+    {% include "menu_gestor.html" %}
+  {% endif %}
   {% block content %}
 
   {% endblock %}
   <!-- Footer -->
-  
+
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

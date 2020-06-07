@@ -30,7 +30,7 @@ urlpatterns = [
     ###### agregado ultimo #####
 
     path('productos/', views.productos, name='productos'),
-    path('lista_productos/', views.ProductosView.as_view(), name='unlistado'),
+    path('lista_productos/', views.ProductosView.as_view(), name='lista_productos'),
     path('productos/<int:id>/', views.producto, name='producto'),
     path('lista1/', views.ListadoProductos.as_view(), name='lista1'),
 

@@ -36,7 +36,8 @@ urlpatterns = [
     #path('/', tiendaonline.views.index, name='index'),
     path('admin/', admin.site.urls),
     #path('producto/' ,tiendaonline.views.producto_view, name='producto'),    
-    url(r'^', include ('tiendaonline.urls')), #para incluir urls.py de la app
+    path('', include ('tiendaonline.urls')), #para incluir urls.py de la app
+
     #path('tiendaonline/', include('tiendaonline.urls')),
 ]
 

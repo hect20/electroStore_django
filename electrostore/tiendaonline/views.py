@@ -116,7 +116,7 @@ class ListadoProductos(TemplateView):
 
 
 def productos(request): 
-    prod = Producto.objects.order_by('titulo')
+    prod = Producto.objects.all()
     return render(request, 'productos.html', {'prod': prod})
 
 def producto(request, id):
@@ -130,3 +130,9 @@ def producto(request, id):
     else:
         formulario = Productoform2 (instance= producto)
     return render(request, 'producto.html', {'producto': formulario})
+
+
+
+def eliminarProducto(request, id):
+    Producto.objects.filter(pk=id).delete()
+    return redirect(productos)
