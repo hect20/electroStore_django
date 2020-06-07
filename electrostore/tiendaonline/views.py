@@ -71,6 +71,10 @@ def detalleProducto(request,id):
 	else:
 		formulario = ProductoDetalle_form(instance=producto)
 	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes})
+
+
+def carrito(request):
+	return render(request,'carrito.html')
 	
 	
 

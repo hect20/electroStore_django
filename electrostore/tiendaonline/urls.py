@@ -14,6 +14,9 @@ urlpatterns = [
     path('kits/',views.kits, name='kits'),
 
     path('detalle-producto/<int:id>/',views.detalleProducto, name='detalleProducto'),
+
+
+    path('carro/',views.carrito, name='carro'),
     
 
 ]
