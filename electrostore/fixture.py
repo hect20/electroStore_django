@@ -5,7 +5,7 @@ from tiendaonline.models import Usuario
 print('principio fixture')
 
 with open('user.json', 'r') as fp:
-    usuarios = json.load(fp)
+    usuarios = json.loads(fp.read())
 
 for a in usuarios:
     n = Usuario(email=a['email'], password=a['password'], nombre=a['nombre'], apellido=a['apellido'], dni=a['dni'])

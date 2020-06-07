@@ -1,5 +1,43 @@
 {% extends "base.html" %}
 {% block title %} Busqueda {% endblock%}
+
+
+
 {% block content %}
 
+<table>
+    <tr>
+      <th>Titulo</th>
+      <th>Descripcion</th>
+      <th>Precio</th>
+      <th>Promocion</th>
+      <th>Fecha</th>
+      <th>Categoria</th>
+    </tr>
+    
+   
+    <tbody>
+        {% if productos%}
+        {% for producto in productos %}
+        <tr>
+            <td>{{producto.titulo}}</td>
+            <td>{{producto.descripcion}} </td>
+            <td>{{producto.precio}}</td>
+            <td>{{producto.promocion}}</td>
+            <td>{{producto.fecha_hora}}</td>
+            <td>{{producto.categoria}}</td>
+
+        </tr>
+        {% endfor %}
+        {% else %}
+            <h3>Producto no encontrado</h3>
+        {% endif %}
+    </tbody>
+</table>
+  
 {% endblock %}
+
+
+
+
+
