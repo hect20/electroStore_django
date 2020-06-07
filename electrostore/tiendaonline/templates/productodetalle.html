@@ -11,9 +11,7 @@
     <hr>
     {% for image in imagenes %}
     
-    <a href="">
-     <img src="{% static 'img/{{image.nombreArchivo}}' %}' " alt="">   
-    </a>
+    {{image.nombreArchivo}}
     
     {% endfor %}
   
