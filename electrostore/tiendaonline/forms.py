@@ -12,6 +12,13 @@ class Productoform(forms.ModelForm):
 			'promocion',
 			'categoria',
 		]
+		labels={
+			'descripcion' : 'descripcion',
+		}
+		widgets={
+			
+			'descripcion': forms.TextInput(attrs={'class':'form-control'}),
+		}
 
 class ProductoDetalle_form(forms.ModelForm):
 	class Meta:
