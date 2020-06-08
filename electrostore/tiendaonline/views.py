@@ -11,17 +11,33 @@ from .models import Producto, Foto
 
 # Create your views here.
 
-def materiales(request):
-	return render(request,"materiales.html")
+class materiales(ListView):
+	model = Producto
+	template_name = 'materiales.html'
+	context_object_name= 'tipoMaterial'
+	def get_queryset(self):
+		return Producto.objects.filter(categoria__nombre='Materiales')
 
-def herramientas(request):
-	return render(request,"herramientas.html")
+class herramientas(ListView):
+	model = Producto
+	template_name = 'herramientas.html'
+	context_object_name= 'tipoHerramientas'
+	def get_queryset(self):		
+		return Producto.objects.filter(categoria__nombre='Herramientas')
 
-def componentes(request):
-	return render(request,"componentes.html")
+class componentes(ListView):
+	model = Producto
+	template_name = 'componentes.html'
+	context_object_name= 'tipoComponentes'
+	def get_queryset(self):
+		return Producto.objects.filter(categoria__nombre='Componentes')
 
-def kits(request):
-	return render(request,"kits.html")
+class kits(ListView):
+	model = Producto
+	template_name = 'kits.html'
+	context_object_name= 'tipoKits'
+	def get_queryset(self):
+		return Producto.objects.filter(categoria__nombre='kits de arduino')
 
 
 

@@ -1,4 +1,21 @@
 {% extends "base.html"%}
+{% load static %}
+{% block title %} Materiales {% endblock title %}
 {% block content %}
-Materiales
+
+<h3>Materiales:</h3>
+<br>
+<br>
+
+    {% for pro in tipoMaterial %}
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{pro.titulo}}</h5>
+          <p class="card-text">{{pro.descripcion}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    {% endfor %}
+
 {% endblock %}

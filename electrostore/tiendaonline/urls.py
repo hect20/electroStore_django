@@ -8,10 +8,10 @@ urlpatterns = [
     path('buscar/',views.buscarProducto, name='buscar'),
 
     ##
-    path('materiales/',views.materiales, name='materiales'),
-    path('herramientas/',views.herramientas, name='herramientas'),
-    path('componentes/',views.componentes, name='componentes'),
-    path('kits/',views.kits, name='kits'),
+    path('materiales/',views.materiales.as_view(), name='materiales'),
+    path('herramientas/',views.herramientas.as_view(), name='herramientas'),
+    path('componentes/',views.componentes.as_view(), name='componentes'),
+    path('kits/',views.kits.as_view(), name='kits'),
 
     path('detalle-producto/<int:id>/',views.detalleProducto, name='detalleProducto'),
 
