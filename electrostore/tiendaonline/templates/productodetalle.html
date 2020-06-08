@@ -2,21 +2,80 @@
 {% load static %}
 {% block title %} Producto Elegido {%endblock%}
 
+
+
 {% block content %}
+
+
+<head>
+	<link href="{%static 'css/styleProductoDetalle.css' %}" rel="stylesheet" type="text/css" media="all" />
+</head>
+
+<body>
+	<!-- Single Page -->
+	<div class="banner-bootom-w3-agileits py-5">
+		<div class="container py-xl-4 py-lg-2">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+			<!-- //tittle heading -->
+			<div class="row">
+				<div class="col-lg-2 col-md-8 single-right-left ">
+					
+					<ul class="list-unstyled">
+                        {% csrf_token %}
+						{% for imagen in imagenes %}
+						<li>
+							<img class="pic" src="{% static 'img/' %}{{imagen.nombreArchivo}}">
+							<img class="picbig" src="{% static 'img/' %}{{imagen.nombreArchivo}}">
+						</li>
+						{% endfor %}
+					  </ul>
+				</div>
+
+				<div class="col-lg-10 single-right-left simpleCart_shelfItem">
+					<h3 class="mb-3">{{ producto.titulo }}</h3>
+					<p class="mb-3">
+                        {{descuento}}
+                        {% if descuento %}
+						    <span class="item_price">${{ precioFinal }}</span>
+                            <del class="mx-2 font-weight-light">${{ producto.precio }}</del>
+                        {% else %}
+                            <span class="item_price">${{ producto.precio }}</span>
+                        {% endif %}
+					</p>
+					<div class="single-infoagile">
+						<ul>
+                            <li>
+                                <h4>Descripcion del producto:</h4>
+                            </li>
+							<li class="mb-3">
+								{{ producto.descripcion }}
+							</li>
+						</ul>
+					</div>
+					
+					boto agregar al carrito
+				</div>
+			</div>
+		</div>
+	</div>
+
 <form class="post-form" method="post">
     
     {% csrf_token %}
     <h4>Titulo: </h4> {{ producto.titulo }}
     <h4>Descripcion: </h4> {{ producto.descripcion }}
     <hr>
-    {% for image in imagenes %}
-    
-    {{image.nombreArchivo}}
-    
+    {% for imagen in imagenes %}
+    <tr>
+        <td> {{imagen.nombreArchivo}} </td>
+        
+        
+
+    </tr>
     {% endfor %}
   
     <br/>
-    <input type="submit" class="btn btn-sm btn-success" value="Agregar al Carro">
 </form>
 
 

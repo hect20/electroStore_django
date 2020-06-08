@@ -59,6 +59,10 @@ def buscarProducto(request):
 def detalleProducto(request,id):
 	imagenes= Foto.objects.filter(producto=id)
 	producto= get_object_or_404(Producto, pk=id)
+
+	precioFinal= producto.precio - ((producto.precio * producto.promocion) / 100)
+	descuento= producto.precio != precioFinal #boolean para prueba
+
 	if request.method == "POST":
 		formulario= ProductoDetalle_form(request.POST, instance=producto)
 		
@@ -70,7 +74,7 @@ def detalleProducto(request,id):
 			return redirect ('home')
 	else:
 		formulario = ProductoDetalle_form(instance=producto)
-	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes})
+	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes, 'precioFinal': precioFinal, 'descuento': descuento})
 
 
 def carrito(request):
