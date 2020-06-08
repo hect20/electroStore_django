@@ -35,9 +35,9 @@
 				<div class="col-lg-10 single-right-left simpleCart_shelfItem">
 					<h3 class="mb-3">{{ producto.titulo }}</h3>
 					<p class="mb-3">
-                        {{descuento}}
                         {% if descuento %}
 						    <span class="item_price">${{ precioFinal }}</span>
+                            <span class="item_price">{{ producto.promocion }}% de descuento</span>
                             <del class="mx-2 font-weight-light">${{ producto.precio }}</del>
                         {% else %}
                             <span class="item_price">${{ producto.precio }}</span>
