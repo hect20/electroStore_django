@@ -37,7 +37,7 @@
 					<p class="mb-3">
                         {% if descuento %}
 						    <span class="item_price">${{ precioFinal }}</span>
-                            <span class="item_price">{{ producto.promocion }}% de descuento</span>
+                            <span class="item_price">({{ producto.promocion }}% de descuento)</span>
                             <del class="mx-2 font-weight-light">${{ producto.precio }}</del>
                         {% else %}
                             <span class="item_price">${{ producto.precio }}</span>

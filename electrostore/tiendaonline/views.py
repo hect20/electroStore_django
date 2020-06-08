@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, HttpResponseRedirect
 #from django.shortcuts import redirect
 from .forms import Productoform, ProductoDetalle_form
 
@@ -38,9 +38,10 @@ def index(request):
 
 #carga de productos
 class producto_view(CreateView):
-	template_name= 'producto_form.html'
+	template_name= 'carga_producto.html'
 	form_class= Productoform
 	success_url= '/producto/'
+
 
 #lista de todos los productos
 class listaProductos(ListView):

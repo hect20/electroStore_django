@@ -6,21 +6,20 @@ class Productoform(forms.ModelForm):
 	class Meta: 
 		model = Producto 
 		fields=[
+			'categoria',
 			'titulo', 
 			'descripcion',
 			'precio',
 			'promocion',
-			'categoria',
+			
 		]
 		labels={
-			
-			'descripcion' : 'descripcion'	
+			'descripcion' : 'descripcion'
 		}
 		widgets={
-			
 			'descripcion': forms.Textarea(attrs={'class':'form-control'}),
-			
 		}
+
 
 class ProductoDetalle_form(forms.ModelForm):
 	class Meta:
