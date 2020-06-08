@@ -23,7 +23,7 @@ class Producto(models.Model):
     titulo= models.CharField(max_length=60)
     descripcion= models.CharField(max_length=80)
     precio= models.DecimalField(max_digits=7, decimal_places=2)
-    promocion= models.PositiveIntegerField(max_length=60)
+    promocion= models.PositiveIntegerField()
     fecha_hora= models.DateField(auto_now=True)
     usuario= models.ManyToManyField(Usuario)
     categoria= models.ForeignKey(Categoria, null=False, blank= False, on_delete= models.CASCADE)

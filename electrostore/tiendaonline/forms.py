@@ -17,7 +17,7 @@ class Productoform(forms.ModelForm):
 		}
 		widgets={
 			
-			'descripcion': forms.TextInput(attrs={'class':'form-control'}),
+			'descripcion': forms.Textarea(attrs={'class':'form-control'}),
 		}
 
 class ProductoDetalle_form(forms.ModelForm):
