@@ -56,7 +56,7 @@ def index(request):
 class producto_view(CreateView):
 	template_name= 'carga_producto.html'
 	form_class= Productoform
-	success_url= '/producto/'
+	success_url= '/lista_productos/'
 
 
 #lista de todos los productos
