@@ -5,11 +5,12 @@
     <thead class="thead-dark">
         <tr>
             <th scope="col">ID</th>
-            <th>Titulo</th>
-            <th>Precio</th>
-            <th>Promocion</th>
-            <th>Categoria</th>
-            <th>Acciones</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Promocion</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Acciones</th>
+            
 
         </tr>
     </thead>
@@ -22,8 +23,9 @@
             <td>{{producto.precio}}</td>
             <td>{{producto.promocion}}%</td>
             <td>{{producto.categoria}}</td>
-            <td><a href="/lista_productos/{{ producto.id }}">Editar</a>
-            <td><a href="/lista_productos/eliminar/{{ producto.id }}">Eliminar</a>
+            <td>
+                <a href="/lista_productos/{{ producto.id }}">Editar</a> | 
+                <a href="/lista_productos/eliminar/{{ producto.id }}">Eliminar</a>
             </td>
         </tr>
         {% endfor %}
