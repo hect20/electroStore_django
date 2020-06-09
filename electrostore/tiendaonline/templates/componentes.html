@@ -5,7 +5,9 @@
 <h3>Componentes:</h3>
 <br>
 <br>
+<div class="row">
     {% for pro in tipoComponentes %}
+        <div class="col-lg-4">
         <div class="card" style="width: 18rem;">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
@@ -15,5 +17,7 @@
                 <a href="#" class="btn btn-primary">Detalles</a>
             </div>
         </div>
+        </div>
     {% endfor %}
+</div>
 {% endblock %}
