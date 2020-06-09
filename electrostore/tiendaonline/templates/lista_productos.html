@@ -9,6 +9,7 @@
             <th>Precio</th>
             <th>Promocion</th>
             <th>Categoria</th>
+            <th>Acciones</th>
 
         </tr>
     </thead>
@@ -21,7 +22,9 @@
             <td>{{producto.precio}}</td>
             <td>{{producto.promocion}}%</td>
             <td>{{producto.categoria}}</td>
-
+            <td><a href="/lista_productos/{{ producto.id }}">Editar</a>
+            <td><a href="/lista_productos/eliminar/{{ producto.id }}">Eliminar</a>
+            </td>
         </tr>
         {% endfor %}
         {% endif %}

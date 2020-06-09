@@ -111,3 +111,9 @@ def editar_producto(request, id):
     else:
         formulario = Productoform (instance= producto)
     return render(request, 'editar_producto.html', {'producto': formulario})
+
+
+
+def eliminar_producto(request, id):
+	Producto.objects.filter(pk=id).delete()
+	return redirect ('listaproductos')

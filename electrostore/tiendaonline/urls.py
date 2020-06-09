@@ -19,8 +19,8 @@ urlpatterns = [
     path('carro/',views.carrito, name='carro'),
     
     # omar - editar producto
-     path('lista_productos/<int:id>/', views.editar_producto, name='editar_producto'),
-
+    path('lista_productos/eliminar/<int:id>/', views.eliminar_producto, name='eliminar_producto'),
+    path('lista_productos/<int:id>/', views.editar_producto, name='editar_producto'),
 ]
 
 
