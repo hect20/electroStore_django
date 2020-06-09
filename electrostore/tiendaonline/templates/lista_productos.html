@@ -1,26 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container">
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th>Titulo</th>
+            <th>Precio</th>
+            <th>Promocion</th>
+            <th>Categoria</th>
 
-<table>
-    <tr>
-      <th>Titulo</th>
-      <th>Descripcion</th>
-      <th>Precio</th>
-      <th>Promocion</th>
-      <th>Fecha</th>
-      <th>Categoria</th>
-    </tr>
-    
-   
+        </tr>
+    </thead>
     <tbody>
         {% if object_list%}
         {% for producto in object_list %}
         <tr>
+            <th scope="row">{{producto.id}}</th>
             <td>{{producto.titulo}}</td>
-            <td>{{producto.descripcion}}</td>
             <td>{{producto.precio}}</td>
-            <td>{{producto.promocion}}</td>
-            <td>{{producto.fecha_hora}}</td>
+            <td>{{producto.promocion}}%</td>
             <td>{{producto.categoria}}</td>
 
         </tr>
@@ -28,5 +27,5 @@
         {% endif %}
     </tbody>
 </table>
-  
+</div>
 {% endblock %}

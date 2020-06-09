@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, HttpResponseRedirect
 #from django.shortcuts import redirect
-from .forms import Productoform, ProductoDetalle_form
+from .forms import Productoform, ProductoDetalle_form, EditarProductoForm
 
 #hector
 from django.views.generic import ListView,CreateView
@@ -99,3 +99,15 @@ def carrito(request):
 	
 	
 
+# omar - editar producto
+def editar_producto(request, id):
+    producto = get_object_or_404(Producto, pk=id)
+    if request.method == "POST":
+        formulario = Productoform(request.POST, instance=producto)
+        if formulario.is_valid():
+            producto = formulario.save(commit = False)
+            producto.save()
+            return redirect('listaproductos')
+    else:
+        formulario = Productoform (instance= producto)
+    return render(request, 'editar_producto.html', {'producto': formulario})
