@@ -13,8 +13,11 @@ urlpatterns = [
     path('componentes/',views.componentes.as_view(), name='componentes'),
     path('kits/',views.kits.as_view(), name='kits'),
 
-    #path('categorias',views.categorias.as_view(),name='categorias'),
-    ##
+    #########
+    path('categorias/',views.categorias.as_view(),name='categorias'),
+    path('categorias/<int:id_pro>',views.mostrar_categoria,name='categorias2'),
+    
+    #########
     path('detalle-producto/<int:id>/',views.detalleProducto, name='detalleProducto'),
 
 

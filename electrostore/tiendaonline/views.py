@@ -7,6 +7,23 @@ from django.views.generic import ListView,CreateView
 from django.db.models import Q
 from .models import Producto, Foto
 
+#########
+from .models import Categoria
+
+class categorias(ListView):
+	model= Categoria
+	template_name= 'categorias.html'
+	context_object_name= 'categorias'
+	def get_queryset(self):
+		return Categoria.objects.all()
+
+
+def mostrar_categoria(request,id_pro):
+	productoss=Producto.objects.filter(categoria=id_pro)
+	return render(request,'categorias2.html',{'productoss':productoss})
+#########
+
+
 
 
 # Create your views here.
