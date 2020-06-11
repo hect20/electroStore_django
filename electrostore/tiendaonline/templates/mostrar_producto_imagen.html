@@ -1,4 +1,4 @@
-{% block content  %}
+{% load static  %}
     
 <div class="col-md-3" style="float:left">
     <div class="card mb-2">
@@ -6,14 +6,23 @@
         {% load static %}
          src="/static/img/prod1.jpg" alt="Card image cap">
        <div class="card-body">
-         <h4 class="card-title">Card title</h4>
-         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-           card's content.</p>
-         <a class="btn btn-primary">Button</a>
+         <h4 class="card-title">{{producto.titulo}}  </h4>
+         <p class="mb-3">
+            {% if descuento %}
+              <span class="item_price">${{ precioFinal }}</span>
+                <span class="item_price">({{ producto.promocion }}% de descuento)</span>
+                <del class="mx-2 font-weight-light">${{ producto.precio }}</del>
+            {% else %}
+                <span class="item_price">${{ producto.precio }}</span>
+            {% endif %}
+          </p>
+         <a href="/detalle-producto/{{ producto.id }}" class="btn btn-primary">Ver</a>
+         
+
        </div>
      </div>
    </div>
 
-{% endblock %} 
+
 
  

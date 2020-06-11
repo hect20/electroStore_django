@@ -2,63 +2,46 @@
 {% extends "mostrar_producto_imagen.html"}
 {% block title %} Bienvenidos! {% endblock%}
 
-{% block content %} 
+{% block content %}
+  <div id="carousel" class="carousel slide carousel-multi-item" data-ride="carousel">
+  
+    <div class="controls-top">
+      <a class="btn-floating waves-effect waves-light" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+      <a class="btn-floating waves-effect waves-light" href="#multi-item-example" data-slide="next"><i class="fas fa-chevron-right"></i></a>
+    </div>
+      <!--Indicators-->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel" data-slide-to="1"></li>
+        
+      </ol>
+      <!--/.Indicators-->
+    
+      <!--Slides-->
+      <div class="carousel-inner" role="listbox">
+    
+        <!--First slide-->
+        <div class="carousel-item active">
+          {% for producto in producto_promocion|slice:":4"  %} 
+               {% include "mostrar_producto_imagen.html" %}
 
-  <div class="container">
-    <div id="carousel" class="carousel slide carousel-multi-item" data-ride="carousel">
-
-        <!--Controls-->
-        <div id="botones" style="font-size: 60px; color:red">
-          <a class="carousel-control-prev" href="#carousel" data-slide="prev"><span class="carousel-control-prev-icon"></span></a>
-          <a class="carousel-control-next" href="#carousel" data-slide="next"><span class="carousel-control-next-icon"></span></a>
+          {% endfor %}
         </div>
-        <!--/.Controls-->
-      
-        <!--Indicators-->
-        <ol class="carousel-indicators">
-          <li data-target="#carousel" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel" data-slide-to="1"></li>
+        <!--/.First slide-->
+        <div class="carousel-item">
+          {% for producto in producto_promocion|slice:"4:"  %} 
+              {% include "mostrar_producto_imagen.html" %}
+              
+          {% endfor %}
           
-        </ol>
-        <!--/.Indicators-->
-      
-        <!--Slides-->
-        <div class="carousel-inner" role="listbox">
-      
-          <!--First slide-->
-          <div class="carousel-item active">
-      
-            {% include "mostrar_producto_imagen.html"%}
-      
-            {% include "mostrar_producto_imagen.html"%}
-            
-            {% include "mostrar_producto_imagen.html"%}
-            
-            {% include "mostrar_producto_imagen.html"%}
-      
-          </div>
-          <!--/.First slide-->
-      
-          <!--Second slide-->
-          <div class="carousel-item">
-      
-            {% include "mostrar_producto_imagen.html"%}
-      
-            {% include "mostrar_producto_imagen.html"%}
-            
-            {% include "mostrar_producto_imagen.html"%}
-            
-            {% include "mostrar_producto_imagen.html"%}
-          </div>
-          <!--/.Second slide-->
         </div>
-        <!--/.Slides-->
-      
+        <!--Second slide-->
+        <!--/.Second slide-->
       </div>
-
+      <!--/.Slides-->
+    
     </div>
 
   </div>
-    
-{% endblock %} 
-
+  
+{% endblock %}
