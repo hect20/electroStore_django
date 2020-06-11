@@ -18,6 +18,7 @@ class materiales(ListView):
 	def get_queryset(self):
 		return Producto.objects.filter(categoria__nombre='Materiales')
 
+
 class herramientas(ListView):
 	model = Producto
 	template_name = 'herramientas.html'
@@ -49,8 +50,12 @@ def index(request):
         #'producto': model.producto ej?
     }
     return render(request, 'index.html', context)
-
-
+class producto_promocion(ListView):
+	model = Producto 
+	template_name = 'index.html'
+	context_object_name= 'producto_promocion'
+	def get_queryset(self):
+		return Producto.objects.filter(promocion__gt = 0)[0:8]
 
 #carga de productos
 class producto_view(CreateView):
