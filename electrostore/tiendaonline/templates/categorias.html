@@ -3,10 +3,11 @@
 {% block title %} {% endblock title %}
 {% block content %}
 
-{% for cat in categorias %}
+
 <ul>
+    {% for cat in categorias %}
     <li><a href="/categorias/{{cat.id}}">{{cat.nombre}}</a></li>
+    {% endfor %}
 </ul>
-{% endfor %}
 
 {% endblock content %}

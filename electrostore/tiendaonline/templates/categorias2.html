@@ -3,9 +3,11 @@
 {% block title %} {% endblock title %}
 {% block content %}
 
+<!--Aqui se Visualiza los productos de una determinada Categoria-->
+
 {% for pro in productoss %}
 <ul>
-    <li><a href=""></a>{{pro.titulo}}</a></li>
+    <li><a href="/detalle-producto/{{pro.id}}">{{pro.titulo}}</a></li>
 </ul>
 {% endfor %}
 

@@ -2,7 +2,8 @@ from django.urls import path
 from tiendaonline import views
 
 urlpatterns = [
-    path('',views.index, name='home'),
+    #path('',views.index, name='home'),
+
     path('carga_producto/' ,views.producto_view.as_view(), name='carga_producto'),
     path('lista_productos/',views.listaProductos.as_view(), name='listaproductos'),
     path('buscar/',views.buscarProducto, name='buscar'),
@@ -14,6 +15,7 @@ urlpatterns = [
     path('kits/',views.kits.as_view(), name='kits'),
 
     #########
+    path('',views.index, name='home'),
     path('categorias/',views.categorias.as_view(),name='categorias'),
     path('categorias/<int:id_pro>',views.mostrar_categoria,name='categorias2'),
     
