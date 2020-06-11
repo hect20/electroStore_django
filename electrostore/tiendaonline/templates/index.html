@@ -1,64 +1,9 @@
 {% extends "base.html" %}
-{% extends "mostrar_producto_imagen.html"}
+
 {% block title %} Bienvenidos! {% endblock%}
 
 {% block content %} 
 
-  <div class="container">
-    <div id="carousel" class="carousel slide carousel-multi-item" data-ride="carousel">
-
-        <!--Controls-->
-        <div id="botones" style="font-size: 60px; color:red">
-          <a class="carousel-control-prev" href="#carousel" data-slide="prev"><span class="carousel-control-prev-icon"></span></a>
-          <a class="carousel-control-next" href="#carousel" data-slide="next"><span class="carousel-control-next-icon"></span></a>
-        </div>
-        <!--/.Controls-->
-      
-        <!--Indicators-->
-        <ol class="carousel-indicators">
-          <li data-target="#carousel" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel" data-slide-to="1"></li>
-          
-        </ol>
-        <!--/.Indicators-->
-      
-        <!--Slides-->
-        <div class="carousel-inner" role="listbox">
-      
-          <!--First slide-->
-          <div class="carousel-item active">
-      
-            {% include "mostrar_producto_imagen.html"%}
-      
-            {% include "mostrar_producto_imagen.html"%}
-            
-            {% include "mostrar_producto_imagen.html"%}
-            
-            {% include "mostrar_producto_imagen.html"%}
-      
-          </div>
-          <!--/.First slide-->
-      
-          <!--Second slide-->
-          <div class="carousel-item">
-      
-            {% include "mostrar_producto_imagen.html"%}
-      
-            {% include "mostrar_producto_imagen.html"%}
-            
-            {% include "mostrar_producto_imagen.html"%}
-            
-            {% include "mostrar_producto_imagen.html"%}
-          </div>
-          <!--/.Second slide-->
-        </div>
-        <!--/.Slides-->
-      
-      </div>
-
-    </div>
-
-  </div>
     
 {% endblock %} 
 

@@ -2,7 +2,7 @@
 /*-- Hedear --*/
 
 header{
-	background: #282828;
+	
     padding-top: 5px;
     	
 }
@@ -17,20 +17,6 @@ header{
 
 
 
-.icons-header a{
-    color: #dddddd;
-    font-size: 24px;
-
-}
-
-.form-control{
-    width: auto;
-}
-
-
-.navbar-light .navbar-nav .nav-link {
-    color: #dddddd;
-}
 
 
 /*-- Content --*/
@@ -41,18 +27,4 @@ header{
 /*-- Footer --*/
 
 
-.footer {
-    background-color: #282828;
-}
-
-
-.navbar-fixed-bottom {
-    bottom: 0;
-    margin-bottom: 0;
-}
-
-.icons-footer a{
-    font-size: 24px;
-    color: #dddddd;
-}
 

@@ -12,8 +12,8 @@ from .models import Categoria
 
 class categorias(ListView):
 	model= Categoria
-	template_name= 'categorias.html'
-	context_object_name= 'categorias'
+	template_name= 'base.html'
+	context_object_name= 'categorias22'
 	def get_queryset(self):
 		return Categoria.objects.all()
 
