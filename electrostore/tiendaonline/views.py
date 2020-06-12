@@ -5,67 +5,60 @@ from .forms import Productoform, ProductoDetalle_form, EditarProductoForm
 #hector
 from django.views.generic import ListView,CreateView
 from django.db.models import Q
-from .models import Producto, Foto
+from .models import Producto, Foto, Categoria
 
-#########
-from .models import Categoria
 
-class categorias(ListView):
+def index(request):
+	return render(request,'index.html')
+
+
+class base(ListView):
 	model= Categoria
 	template_name= 'base.html'
-	context_object_name= 'categorias22'
+	context_object_name= 'categoriass'
+	# todas las categorias
 	def get_queryset(self):
 		return Categoria.objects.all()
 
 
+
+
+
 def mostrar_categoria(request,id_pro):
 	productoss=Producto.objects.filter(categoria=id_pro)
-	return render(request,'categorias2.html',{'productoss':productoss})
+	return render(request,'categoria.html',{'productoss':productoss})
 #########
 
 
+def detalleProducto(request,id):
+	imagenes= Foto.objects.filter(producto=id)
+	producto= get_object_or_404(Producto, pk=id)
 
+	precioFinal= producto.precio - ((producto.precio * producto.promocion) / 100)
+	descuento= producto.precio != precioFinal #boolean para prueba
 
-# Create your views here.
-
-class materiales(ListView):
-	model = Producto
-	template_name = 'materiales.html'
-	context_object_name= 'tipoMaterial'
-	def get_queryset(self):
-		return Producto.objects.filter(categoria__nombre='Materiales')
-
-class herramientas(ListView):
-	model = Producto
-	template_name = 'herramientas.html'
-	context_object_name= 'tipoHerramientas'
-	def get_queryset(self):		
-		return Producto.objects.filter(categoria__nombre='Herramientas')
-
-class componentes(ListView):
-	model = Producto
-	template_name = 'componentes.html'
-	context_object_name= 'tipoComponentes'
-	def get_queryset(self):
-		return Producto.objects.filter(categoria__nombre='Componentes')
-
-class kits(ListView):
-	model = Producto
-	template_name = 'kits.html'
-	context_object_name= 'tipoKits'
-	def get_queryset(self):
-		return Producto.objects.filter(categoria__nombre='kits de arduino')
+	if request.method == "POST":
+		formulario= ProductoDetalle_form(request.POST, instance=producto)
+		
+		if formulario.is_valid():
+			producto = formulario.save(commit=False)
+			
+			producto.save()
+			
+			return redirect ('home')
+	else:
+		formulario = ProductoDetalle_form(instance=producto)
+	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes, 'precioFinal': precioFinal, 'descuento': descuento})
 
 
 
 
 
-def index(request):
-    context = {
-        'titulo': 'gracias por visitar Electro Store!'
-        #'producto': model.producto ej?
-    }
-    return render(request, 'index.html', context)
+
+
+
+
+
 
 
 
