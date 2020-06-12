@@ -12,13 +12,6 @@ def index(request):
 	return render(request,'index.html')
 
 
-class base(ListView):
-	model= Categoria
-	template_name= 'base.html'
-	context_object_name= 'categoriass'
-	# todas las categorias
-	def get_queryset(self):
-		return Categoria.objects.all()
 
 
 

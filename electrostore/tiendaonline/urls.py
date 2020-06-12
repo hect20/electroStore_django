@@ -10,7 +10,7 @@ urlpatterns = [
     path('detalle-producto/<int:id>/',views.detalleProducto, name='detalleProducto'),
     #
     
-    path('base/',views.base.as_view(), name='base'),
+   
 
 
     
