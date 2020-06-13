@@ -62,7 +62,7 @@ class producto_view(CreateView):
 	success_url= '/lista_productos/'
 
 
-#lista de todos los productos
+#lista de todos los productos con sus caracteristicas
 class listaProductos(ListView):
 	model = Producto
 	template_name= 'lista_productos.html'
