@@ -4,7 +4,7 @@
 <form method="POST" class="post-form">
     <!-- metodo para enviar al servidor -->
     {% csrf_token %}
-    {{ producto }}
+    {{form.as_p}}
     </br>
     <input type="submit" class="btn btn-sm btn-success" value="Guardar">
     <a href="{% url 'listaproductos' %}" class="btn btn-sm btn-secondary">Cancelar</a>

@@ -3,9 +3,21 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, 
 from .forms import Productoform, ProductoDetalle_form, EditarProductoForm
 
 #hector
-from django.views.generic import ListView,CreateView
+from django.views.generic import ListView,CreateView,UpdateView
 from django.db.models import Q
 from .models import Producto, Foto, Categoria
+
+
+#class imagen_producto (CreateView):
+#	model= Foto
+#	fields= ['nombreArchivo','producto']
+#	def carga(self, id_producto):
+
+
+
+
+
+
 
 
 def index(request):
@@ -39,17 +51,6 @@ def detalleProducto(request,id):
 	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes, 'precioFinal': precioFinal, 'descuento': descuento})
 
 
-
-
-
-
-
-
-
-
-
-
-
 #carga de productos
 class producto_view(CreateView):
 	template_name= 'carga_producto.html'
@@ -71,43 +72,16 @@ def buscarProducto(request):
 		productos= Producto.objects.filter(Q(titulo__icontains = queryset)|Q(descripcion__icontains = queryset)).distinct()
 	return render(request,'search_results.html',{'productos':productos})
 
-def detalleProducto(request,id):
-	imagenes= Foto.objects.filter(producto=id)
-	producto= get_object_or_404(Producto, pk=id)
-
-	precioFinal= producto.precio - ((producto.precio * producto.promocion) / 100)
-	descuento= producto.precio != precioFinal #boolean para prueba
-
-	if request.method == "POST":
-		formulario= ProductoDetalle_form(request.POST, instance=producto)
-		
-		if formulario.is_valid():
-			producto = formulario.save(commit=False)
-			
-			producto.save()
-			
-			return redirect ('home')
-	else:
-		formulario = ProductoDetalle_form(instance=producto)
-	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes, 'precioFinal': precioFinal, 'descuento': descuento})
 
 
 
-	
 
-# omar - editar producto
-def editar_producto(request, id):
-    producto = get_object_or_404(Producto, pk=id)
-    if request.method == "POST":
-        formulario = Productoform(request.POST, instance=producto)
-        if formulario.is_valid():
-            producto = formulario.save(commit = False)
-            producto.save()
-            return redirect('listaproductos')
-    else:
-        formulario = Productoform (instance= producto)
-    return render(request, 'editar_producto.html', {'producto': formulario})
 
+class editar_producto(UpdateView):
+	model= Producto
+	form_class= EditarProductoForm
+	template_name= 'editar_producto.html'
+	success_url= '/lista_productos/'
 
 
 def eliminar_producto(request, id):

@@ -32,7 +32,7 @@ class ProductoDetalle_form(forms.ModelForm):
 class EditarProductoForm(forms.ModelForm): #ModelForm clase de django que genera el form
     class Meta:
         model = Producto
-        fields = ('titulo', 'descripcion')#, 'categoria')
+        fields = ('__all__')
 
     def __init__(self, *args, **kwargs):
         super(EditarProductoForm, self).__init__(*args, **kwargs)

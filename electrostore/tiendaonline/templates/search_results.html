@@ -5,8 +5,11 @@
 
 {% block content %}
 
+{% if productos%}
+
 <table>
     <tr>
+      
       <th>Titulo</th>
       <th>Descripcion</th>
       <th>Precio</th>
@@ -17,7 +20,7 @@
     
    
     <tbody>
-        {% if productos%}
+        
         {% for producto in productos %}
         <tr>
             <td>{{producto.titulo}}</td>
