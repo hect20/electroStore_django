@@ -97,9 +97,7 @@ def detalleProducto(request,id):
 	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes, 'precioFinal': precioFinal, 'descuento': descuento})
 
 
-def carrito(request):
-	return render(request,'carrito.html')
-	
+
 	
 
 # omar - editar producto
