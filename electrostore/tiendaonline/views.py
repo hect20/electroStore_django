@@ -12,11 +12,6 @@ def index(request):
 	return render(request,'index.html')
 
 
-
-
-
-
-
 def mostrar_categoria(request,id_pro):
 	productoss=Producto.objects.filter(categoria=id_pro)
 	return render(request,'categoria.html',{'productoss':productoss})
