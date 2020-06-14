@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # apps tienda online
     path('', include('tiendaonline.urls')),
-    
+    path('', include('registro.urls')),
     
     
 ]
