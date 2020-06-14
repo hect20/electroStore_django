@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, 
 from .forms import Productoform, ProductoDetalle_form, EditarProductoForm
 
 #hector
-from django.views.generic import ListView,CreateView,UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from .models import Producto, Foto, Categoria
 
@@ -12,12 +12,6 @@ from .models import Producto, Foto, Categoria
 #	model= Foto
 #	fields= ['nombreArchivo','producto']
 #	def carga(self, id_producto):
-
-
-
-
-
-
 
 
 def index(request):
@@ -72,10 +66,7 @@ def buscarProducto(request):
 		productos= Producto.objects.filter(Q(titulo__icontains = queryset)|Q(descripcion__icontains = queryset)).distinct()
 	return render(request,'search_results.html',{'productos':productos})
 
-
-
-
-
+# Gerente, Administrador
 
 class editar_producto(UpdateView):
 	model= Producto
@@ -83,7 +74,14 @@ class editar_producto(UpdateView):
 	template_name= 'editar_producto.html'
 	success_url= '/lista_productos/'
 
+##
+class eliminar_producto(DeleteView):
+	model= Producto
+	context_object_name= 'producto'
+	template_name= 'eliminar_producto.html'
+	success_url= '/lista_productos/'
 
-def eliminar_producto(request, id):
-	Producto.objects.filter(pk=id).delete()
-	return redirect ('listaproductos')
+
+#def eliminar_producto(request, id):
+#	Producto.objects.filter(pk=id).delete()
+#	return redirect ('listaproductos')

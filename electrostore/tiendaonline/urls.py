@@ -24,9 +24,12 @@ urlpatterns = [
     #########
   
     # omar - editar producto
-    path('lista_productos/eliminar/<int:id>/', views.eliminar_producto, name='eliminar_producto'),
+    #path('lista_productos/eliminar/<int:id>/', views.eliminar_producto, name='eliminar_producto'),
 
     path('lista_productos/<int:pk>/', views.editar_producto.as_view(), name='editar_producto'),
+
+    path('lista_productos/<int:pk>/', views.eliminar_producto.as_view(), name='eliminar_producto'),
+
 ]
 
 
