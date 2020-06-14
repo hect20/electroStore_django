@@ -45,11 +45,7 @@ def detalleProducto(request,id):
 	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes, 'precioFinal': precioFinal, 'descuento': descuento})
 
 
-#carga de productos
-class producto_view(CreateView):
-	template_name= 'carga_producto.html'
-	form_class= Productoform
-	success_url= '/lista_productos/'
+
 
 
 #lista de todos los productos con sus caracteristicas
@@ -67,6 +63,12 @@ def buscarProducto(request):
 	return render(request,'search_results.html',{'productos':productos})
 
 # Gerente, Administrador
+# Carga de Productos
+
+class carga_producto(CreateView):
+	template_name= 'carga_producto.html'
+	form_class= Productoform
+	success_url= '/lista_productos/'
 
 class editar_producto(UpdateView):
 	model= Producto
@@ -74,13 +76,11 @@ class editar_producto(UpdateView):
 	template_name= 'editar_producto.html'
 	success_url= '/lista_productos/'
 
-##
 class eliminar_producto(DeleteView):
 	model= Producto
 	context_object_name= 'producto'
 	template_name= 'eliminar_producto.html'
 	success_url= '/lista_productos/'
-
 
 #def eliminar_producto(request, id):
 #	Producto.objects.filter(pk=id).delete()
