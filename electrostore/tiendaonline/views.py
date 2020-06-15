@@ -63,19 +63,21 @@ def buscarProducto(request):
 	return render(request,'search_results.html',{'productos':productos})
 
 # Gerente, Administrador
-# Carga de Productos
 
+# Carga de Productos
 class carga_producto(CreateView):
 	template_name= 'carga_producto.html'
 	form_class= Productoform
 	success_url= '/lista_productos/'
 
+# Editar un Producto
 class editar_producto(UpdateView):
 	model= Producto
 	form_class= EditarProductoForm
 	template_name= 'editar_producto.html'
 	success_url= '/lista_productos/'
-
+	
+# Eliminar un Producto
 class eliminar_producto(DeleteView):
 	model= Producto
 	context_object_name= 'producto'
