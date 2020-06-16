@@ -42,7 +42,7 @@ def detalleProducto(request,id):
 			return redirect ('home')
 	else:
 		formulario = ProductoDetalle_form(instance=producto)
-	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes, 'precioFinal': precioFinal, 'descuento': descuento})
+	return render(request,'producto_detalle.html',{'producto':producto,'imagenes':imagenes, 'precioFinal': precioFinal, 'descuento': descuento})
 
 
 ###########################################
