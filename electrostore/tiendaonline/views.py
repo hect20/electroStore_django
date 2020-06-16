@@ -54,13 +54,35 @@ class listaProductos(ListView):
 	template_name= 'lista_productos.html'
 
 
+class buscar_producto(ListView):
+	template_name = 'search_results.html'
+	model = Producto
+	context_object_name='productos'
+
+	def get_queryset(self):
+		model= Producto
+		productos= Producto.objects.all()
+		if productos:
+			productos= model.objects.filter(Q(titulo__icontains = self) | Q(descripcion__icontains = self))
+		return productos
+		
+
+
+
 #buscar un producto
-def buscarProducto(request):
-	queryset= request.GET.get("buscar")
-	productos= Producto.objects.all()
-	if queryset:
-		productos= Producto.objects.filter(Q(titulo__icontains = queryset)|Q(descripcion__icontains = queryset)).distinct()
-	return render(request,'search_results.html',{'productos':productos})
+#def buscarProducto(request):
+#	queryset= request.GET.get("buscar")
+#	productos= Producto.objects.all()
+#	if queryset:
+#		productos= Producto.objects.filter(Q(titulo__icontains = queryset)|Q(descripcion__icontains = queryset)).distinct()
+#	return render(request,'search_results.html',{'productos':productos})
+
+
+
+
+
+
+
 
 # Gerente, Administrador
 
