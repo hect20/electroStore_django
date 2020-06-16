@@ -12,7 +12,9 @@ urlpatterns = [
 
     path('lista_productos/',views.listaProductos.as_view(), name='listaproductos'),
     path('buscar/',views.buscarProducto, name='buscar'),
-
+    
+    path('search/',views.SearchResultsView.as_view(), name ='search_results'),
+     
     # Agregado hector
     #path('buscar/',views.buscar_producto.as_view(), name='buscar'),
 

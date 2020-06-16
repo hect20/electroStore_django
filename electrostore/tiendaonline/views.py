@@ -55,7 +55,15 @@ class listaProductos(ListView):
 
 
 
-		
+class SearchResultsView (ListView):
+	model  = Producto
+	template_name  =  'prueba_buscador.html'
+	def get_queryset(self):
+		query= self.request.GET.get('q')
+		object_list= Producto.objects.filter(Q(titulo__icontains = query)|Q(descripcion__icontains = query)).distinct()
+		return object_list
+
+
 
 
 
