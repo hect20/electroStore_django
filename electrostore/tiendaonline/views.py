@@ -57,14 +57,10 @@ class listaProductos(ListView):
 class buscar_producto(ListView):
 	template_name = 'search_results.html'
 	model = Producto
-	context_object_name='productos'
-
-	def get_queryset(self):
-		model= Producto
-		productos= Producto.objects.all()
-		if productos:
-			productos= model.objects.filter(Q(titulo__icontains = self) | Q(descripcion__icontains = self))
-		return productos
+	#context_object_name='productos'
+	
+	def get_queryset(request):
+		return Producto.objects.filter(Q(titulo__icontains = request) | Q(descripcion__icontains = request))
 		
 
 
