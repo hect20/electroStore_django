@@ -5,7 +5,7 @@
 
 {% block content %}
 
-{% if object_list%}
+{% if productos %}
 
 <table>
     <tr>
@@ -21,7 +21,7 @@
    
     <tbody>
         
-        {% for producto in object_list %}
+        {% for producto in productos %}
         <tr>
             <td>{{producto.titulo}}</td>
             <td>{{producto.descripcion}} </td>
