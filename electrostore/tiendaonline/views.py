@@ -45,7 +45,7 @@ def detalleProducto(request,id):
 	return render(request,'productodetalle.html',{'producto':producto,'imagenes':imagenes, 'precioFinal': precioFinal, 'descuento': descuento})
 
 
-
+###########################################
 
 
 #lista de todos los productos con sus caracteristicas
@@ -54,32 +54,16 @@ class listaProductos(ListView):
 	template_name= 'lista_productos.html'
 
 
-
-class SearchResultsView (ListView):
+class buscar_producto (ListView):
 	model  = Producto
-	template_name  =  'prueba_buscador.html'
+	template_name  =  'search_results.html'
+	context_object_name= 'productos'
 	def get_queryset(self):
-		query= self.request.GET.get('q')
-		object_list= Producto.objects.filter(Q(titulo__icontains = query)|Q(descripcion__icontains = query)).distinct()
+		query= self.request.GET.get("buscado")
+		object_list= Producto.objects.all()
+		if query:
+			object_list= Producto.objects.filter(Q(titulo__icontains = query)|Q(descripcion__icontains = query)).distinct()
 		return object_list
-
-
-
-
-
-#buscar un producto
-def buscarProducto(request):
-	queryset= request.GET.get("buscar")
-	productos= Producto.objects.all()
-	if queryset:
-		productos= Producto.objects.filter(Q(titulo__icontains = queryset)|Q(descripcion__icontains = queryset)).distinct()
-	return render(request,'search_results.html',{'productos':productos})
-
-
-
-
-
-
 
 
 # Gerente, Administrador
@@ -103,7 +87,3 @@ class eliminar_producto(DeleteView):
 	context_object_name= 'producto'
 	template_name= 'eliminar_producto.html'
 	success_url= '/lista_productos/'
-
-#def eliminar_producto(request, id):
-#	Producto.objects.filter(pk=id).delete()
-#	return redirect ('listaproductos')
