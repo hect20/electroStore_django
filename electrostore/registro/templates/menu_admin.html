@@ -34,18 +34,33 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Modificar/Eliminar</a>
             </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Ventas
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#"> -- </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#"> -- </a>
-            </div>
-          </li>
-        
+        </li>
+        {% if request.user|has_group:"Gerente" or user.is_staff %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Ventas
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#"> -- </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#"> -- </a>
+                </div>
+            </li>
+        {% endif %}
+
+        {% if user.is_staff %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Personal
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#"> Agregar Gerente </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#"> Agregar Gestor </a>
+                </div>
+            </li>    
+        {% endif %}
+
       </ul>
     </div>
   </nav>
