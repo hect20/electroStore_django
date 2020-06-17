@@ -17,11 +17,23 @@ from .models import Producto, Foto, Categoria
 def index(request):
 	return render(request,'index.html')
 
+class mostrar_categoria(ListView):
+	model= Producto
+	template_name= 'categoria.html'
+	context_object_name='productoss'
+	def get_queryset(self):
+		return Producto.objects.filter(categoria=self.kwargs['pk'])
 
-def mostrar_categoria(request,id_pro):
+	""" def get_queryset(self,**kwargs):
+		id_cat= self.kwargs.get('pk',None)
+		object_list=Producto.objects.filter(categoria=id_cat)
+		return object_list """
+
+
+""" def mostrar_categoria(request,id_pro):
 	productoss=Producto.objects.filter(categoria=id_pro)
-	return render(request,'categoria.html',{'productoss':productoss})
-#########
+	return render(request,'categoria.html',{'productoss':productoss}) """
+
 
 class detalle_producto(DetailView):
 	model= Producto

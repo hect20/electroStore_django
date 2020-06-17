@@ -5,7 +5,8 @@ urlpatterns = [
    
     path('',views.index, name='home'),
 
-    path('categorias/<int:id_pro>',views.mostrar_categoria),
+    #path('categorias/<int:id_pro>',views.mostrar_categoria),
+    path('categorias/<int:pk>',views.mostrar_categoria.as_view(), name='categorias'),
     #path('detalle-producto/<int:id>/',views.detalleProducto, name='detalleProducto'),
     path('detalle-producto/<int:pk>/',views.detalle_producto.as_view(), name='detalleProducto'),
 
