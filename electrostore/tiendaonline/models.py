@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.contrib.auth.models import UserManager
 # Create your models here.
 class Categoria(models.Model):
     nombre= models.CharField(max_length=30)
@@ -9,14 +10,16 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nombre
 
-class Usuario(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+#class Usuario(models.Model):
+#    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+class  Usuario(User):
     dni= models.PositiveIntegerField()
 
     def __str__(self):
-        return self.dni
+        return self.username
     
-    objects = models.Manager()
+    #objects = models.Manager()
+    objects = UserManager()
 
 '''     #post_save crea el perfil despues de que un usuario es registrado
     @receiver(post_save, sender=User)
@@ -65,12 +68,8 @@ class Itemvendido(models.Model):
     producto= models.ForeignKey(Producto, null=False, blank= False, on_delete= models.CASCADE)
 
 class Administrador(models.Model):
-
-    email= models.EmailField(max_length=40)
-    password= models.CharField(max_length=30)
-    nombre= models.CharField(max_length=30)
-    apellido= models.CharField(max_length=20)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     telefono= models.CharField(max_length=30)
-
+    #is_gerente= 
     def __str__(self):
-        return self.nombre
+        return self.user

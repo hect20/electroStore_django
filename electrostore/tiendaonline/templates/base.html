@@ -22,12 +22,15 @@
 <body>
   
   {% include "main_bar.html" %}
+  {% load has_group %}
+  {% if user.is_authenticated and not request.user|has_group:"Usuario" %}
+    {% include "menu_admin.html" %}
+  {% endif %}
+
   {% block content %}
 
   {% endblock %}
-  <!-- Footer -->
   
-
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
