@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, 
 from .forms import Productoform, ProductoDetalle_form, EditarProductoForm
 
 #hector
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.db.models import Q
 from .models import Producto, Foto, Categoria
 
@@ -23,29 +23,19 @@ def mostrar_categoria(request,id_pro):
 	return render(request,'categoria.html',{'productoss':productoss})
 #########
 
+class detalle_producto(DetailView):
+	model= Producto
+	template_name= 'producto_detalle.html'
+	context_object_name= 'producto'
+	def get_context_data(self,**kwargs):
+		context= super().get_context_data(**kwargs)
+		producto= self.object
+		precioFinal= producto.precio - ((producto.precio * producto.promocion) / 100)
+		descuento= producto.precio != precioFinal
 
-def detalleProducto(request,id):
-	imagenes= Foto.objects.filter(producto=id)
-	producto= get_object_or_404(Producto, pk=id)
-
-	precioFinal= producto.precio - ((producto.precio * producto.promocion) / 100)
-	descuento= producto.precio != precioFinal #boolean para prueba
-
-	if request.method == "POST":
-		formulario= ProductoDetalle_form(request.POST, instance=producto)
-		
-		if formulario.is_valid():
-			producto = formulario.save(commit=False)
-			
-			producto.save()
-			
-			return redirect ('home')
-	else:
-		formulario = ProductoDetalle_form(instance=producto)
-	return render(request,'producto_detalle.html',{'producto':producto,'imagenes':imagenes, 'precioFinal': precioFinal, 'descuento': descuento})
-
-
-###########################################
+		context['precioFinal']= precioFinal
+		context['descuento']= descuento
+		return context
 
 
 #lista de todos los productos con sus caracteristicas
