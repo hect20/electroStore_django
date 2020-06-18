@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, 
 #from django.shortcuts import redirect
 from .forms import Productoform, ProductoDetalle_form, EditarProductoForm
 
-#hector
+
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.db.models import Q
 from .models import Producto, Foto, Categoria
@@ -62,6 +62,7 @@ class buscar_producto (ListView):
 	context_object_name= 'productos'
 	def get_queryset(self):
 		query= self.request.GET.get("buscado")
+		
 		object_list= Producto.objects.all()
 		if query:
 			object_list= Producto.objects.filter(Q(titulo__icontains = query)|Q(descripcion__icontains = query)).distinct()
@@ -89,3 +90,8 @@ class eliminar_producto(DeleteView):
 	context_object_name= 'producto'
 	template_name= 'eliminar_producto.html'
 	success_url= '/lista_productos/'
+
+
+def carrito(request,id):
+
+	return render(request,'carrito.html')

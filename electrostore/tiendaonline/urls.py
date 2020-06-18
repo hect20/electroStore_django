@@ -20,6 +20,10 @@ urlpatterns = [
     path('lista_productos/<int:pk>/', views.editar_producto.as_view(), name='editar_producto'),
     path('lista_productos/eliminar/<int:pk>/', views.eliminar_producto.as_view(), name='eliminar_producto'),
 
+
+    path('carrito/<int:id>' ,views.carrito, name='carrito'),
+    
+
 ]
 
 
