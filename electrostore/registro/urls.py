@@ -10,4 +10,8 @@ urlpatterns = [
     path('registrarse/', views.SignUpView.as_view(), name="registrarse"),
     path('iniciar_sesion/', views.SignInView.as_view(), name="iniciar_sesion"),
     path('cerrar_sesion/', views.SignOutView.as_view(), name='cerrar_sesion'),
+   
+    path('administrador_alta/<int:id>/', views.AdministradorSignUpView.as_view(), name='administrador_alta'),
+    path('administrador_alta', views.AdministradorSignUpView.as_view(), name='administrador_alta'),
+
 ]

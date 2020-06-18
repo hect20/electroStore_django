@@ -1,6 +1,6 @@
 from django import forms
 
-from tiendaonline.models import Producto,Foto
+from tiendaonline.models import Producto,Foto, Categoria
 
 class Productoform(forms.ModelForm): 
 	class Meta: 
@@ -39,3 +39,13 @@ class EditarProductoForm(forms.ModelForm): #ModelForm clase de django que genera
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
 
+
+class CategoriaForm(forms.ModelForm): 
+	class Meta: 
+		model = Categoria 
+		fields=[
+			'nombre',
+		]
+		labels={
+			'nombre' : 'Nombre',
+		}

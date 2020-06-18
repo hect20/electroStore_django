@@ -6,9 +6,11 @@ from django.contrib.auth.models import UserManager
 # Create your models here.
 class Categoria(models.Model):
     nombre= models.CharField(max_length=30)
-
+    
     def __str__(self):
         return self.nombre
+    
+    objects = models.Manager()
 
 #class Usuario(models.Model):
 #    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
@@ -18,7 +20,6 @@ class  Usuario(User):
     def __str__(self):
         return self.username
     
-    #objects = models.Manager()
     objects = UserManager()
 
 '''     #post_save crea el perfil despues de que un usuario es registrado
@@ -41,7 +42,7 @@ class Producto(models.Model):
     promocion= models.PositiveIntegerField(null=False)
     fecha_hora= models.DateField(auto_now=True)
     usuario= models.ManyToManyField(Usuario)
-    categoria= models.ForeignKey(Categoria, null=False, blank= False, on_delete= models.CASCADE)
+    categoria= models.ForeignKey(Categoria, null=False, blank= False, on_delete= models.PROTECT)
     
     #agregado para evitar advertencia VSC
     objects = models.Manager()
@@ -67,9 +68,26 @@ class Itemvendido(models.Model):
     compra= models.ForeignKey(Compra,null=False, blank= False, on_delete= models.CASCADE)
     producto= models.ForeignKey(Producto, null=False, blank= False, on_delete= models.CASCADE)
 
-class Administrador(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    telefono= models.CharField(max_length=30)
-    #is_gerente= 
+#class Administrador(models.Model):
+#    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+#    telefono= models.CharField(max_length=30)
+
+#    def __str__(self):
+#        return self.user
+
+class  Administrador(User):
+    CARGOS= [
+        ('gerente', 'Gerente'),
+        ('gestor', 'Gestor'),
+    ]
+    telefono= models.CharField(max_length=30, default='0')
+    cargo= models.CharField(
+        max_length=7,
+        choices= CARGOS,
+        default= 'gestor'
+    )
+
     def __str__(self):
-        return self.user
+        return self.username
+    
+    objects = UserManager()
