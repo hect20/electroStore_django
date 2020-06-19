@@ -4,7 +4,9 @@ from tiendaonline import views
 
 urlpatterns = [
     path('',views.producto_promocion.as_view(), name='home'),
+    ###
 
+    path('prueba/',views.Prueba_crispy.as_view(), name='prueba'),
     ##
     path('categorias/<int:pk>',views.MostrarCategoria.as_view(), name='categorias'),
     path('producto_detalle/<int:pk>/',views.ProductoDetalle.as_view(), name='producto_detalle'),

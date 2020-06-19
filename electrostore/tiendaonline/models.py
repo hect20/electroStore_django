@@ -37,7 +37,7 @@ class  Usuario(User):
 
 class Producto(models.Model):
     titulo= models.CharField(max_length=60)
-    descripcion= models.CharField(max_length=3000)
+    descripcion= models.TextField(max_length=3000)
     precio= models.DecimalField(max_digits=7, decimal_places=2)
     promocion= models.PositiveIntegerField(null=False)
     fecha_hora= models.DateField(auto_now=True)
