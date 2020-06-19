@@ -18,7 +18,10 @@ urlpatterns = [
     #path('detalle-producto/<int:id>/',views.detalleProducto, name='detalleProducto'),
     
     ##
-    path('buscar/',views.buscarProducto, name='buscar'),
+    #path('buscar/',views.buscarProducto, name='buscar'),
+    
+    path('buscar/',views.buscar_producto.as_view(), name='buscar'),
+    
     ##
     
     ##

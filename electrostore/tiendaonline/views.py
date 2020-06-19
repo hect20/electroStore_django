@@ -12,6 +12,17 @@ from .models import Producto, Foto, Categoria
 
 ####
 
+def index(request):
+    context = {
+        'titulo': 'gracias por visitar Electro Store!'
+        # 'producto': model.producto ej?
+    }
+    return render(request, 'index.html', context)
+
+
+
+
+
 class mostrar_categoria(ListView):
 	model= Producto
 	template_name= 'categoria.html'
@@ -40,15 +51,6 @@ class ProductoDetalle(DetailView):
 
 
 
-
-def index(request):
-    context = {
-        'titulo': 'gracias por visitar Electro Store!'
-        # 'producto': model.producto ej?
-    }
-    return render(request, 'index.html', context)
-
-
 class producto_promocion(ListView):
     model = Producto
     template_name = 'index.html'
@@ -73,16 +75,21 @@ class listaProductos(ListView):
 
 # buscar un producto
 
+##
 
-def buscarProducto(request):
-    queryset = request.GET.get("buscar")
-    productos = Producto.objects.all()
-    if queryset:
-        productos = Producto.objects.filter(Q(titulo__icontains=queryset) | Q(
-            descripcion__icontains=queryset)).distinct()
-    return render(request, 'search_results.html', {'productos': productos})
+class buscar_producto (ListView):
+	model  = Producto
+	template_name  =  'search_results.html'
+	context_object_name= 'productos'
+	def get_queryset(self):
+		query= self.request.GET.get("buscado")
+		
+		object_list= Producto.objects.all()
+		if query:
+			object_list= Producto.objects.filter(Q(titulo__icontains = query)|Q(descripcion__icontains = query)).distinct()
+		return object_list
 
-
+##
 
 
 def carrito(request):
