@@ -6,7 +6,7 @@ urlpatterns = [
     path('',views.producto_promocion.as_view(), name='home'),
 
     ##
-    path('categorias/<int:pk>',views.mostrar_categoria.as_view(), name='categorias'),
+    path('categorias/<int:pk>',views.MostrarCategoria.as_view(), name='categorias'),
     path('producto_detalle/<int:pk>/',views.ProductoDetalle.as_view(), name='producto_detalle'),
     ##
 
