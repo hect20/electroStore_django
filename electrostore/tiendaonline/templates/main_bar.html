@@ -1,4 +1,3 @@
-{% load static %}
 <header>
   <!--<div class="container">-->
   <nav class="navbar navbar-expand-md navbar-light">
@@ -11,83 +10,55 @@
 
     <div class="container-fluid">
       <div class="col-sm-12 search">
-        <form method="GET">
-          <div id="custom-search-input">
-            <div class="input-group col-sm-12">
-              <input type="text" class="form-control" placeholder="Buscar" name="buscar" value="{{request.GET.buscar}}">
-
-              <span class="input-group-list">
-                <button class="btn btn-outline-success my-2 my-sm-0 mx-1" type="submit">Buscar</button>
-                <!--<button type="submit" class="boton btn-successs">Buscar</button>-->
-              </span>
-
-            </div>
-          </div>
-        </form>
+          <form method="GET" action="{% url 'buscar' %}">
+              <div id="custom-search-input">
+                  <div class="input-group col-sm-12">
+                      <!---->
+                      <!---->
+                      <input type="text" class="form-control" placeholder="Buscar" name="buscado">
+                     
+                      <span class="input-group-list">
+                        <button class="btn btn-outline-success my-2 my-sm-0 mx-1" type="submit">Buscar</button>
+                          <!--<button type="submit" class="boton btn-successs">Buscar</button>-->
+                      </span>
+                  </div>
+              </div>
+          </form>
       </div>
     </div>
 
     <div class="collapse mr-md-0 navbar-collapse" id="navbarTogglerDemo01">
-      {% load has_group %}
       <ul class="navbar-nav ml-auto">
-        {% if user.is_authenticated %}
-          <li class="nav-item text-inline">
-            <a class="nav-link" href="#">Hola, {{ user.username }}</a>
-          </li>
-          <li class="nav-item text-inline">
-            <a class="nav-link" href="{% url 'cerrar_sesion' %}">Cerrar Sesion</a>
-          </li>
-        {% else %}
-          <li class="nav-item text-inline">
-            <a class="nav-link" href="{% url 'iniciar_sesion' %}">IniciarSesion</a>
-          </li>
-          <li class="nav-item text-inline">
-            <a class="nav-link" href="{% url 'registrarse' %}">Registrarse</a>
-          </li>
-        {% endif %}
+        <li class="nav-item text-inline">
+          <a class="nav-link" href="#">IniciarSesion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Registrarse</a>
+        </li>
       </ul>
 
     </div>
   </nav>
 
-
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav list-inline text-xs-right">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'materiales' %}">Materiales</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'herramientas' %}">Herramientas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'componentes' %}">Componentes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'kits' %}">Kits</a>
-        </li>
-        {% if user.is_staff %}
-        <li class="nav-item">
-          <a class="nav-link" href="#">Administrar Personal</a>
-        </li>
-        {% endif %}
-
+          {% for cat in categorias %}
+          <li class="nav-item">
+              <a class="nav-link" href="/categorias/{{cat.id}}">{{cat.nombre}}</a>
+          </li>
+          {% endfor %}
       </ul>
     </div>
-    {% if user.is_authenticated %}
     <ul class="icons-header list-inline text-xs-right">
       <li class="list-inline-item">
         <a href="#"><i class="fas fa-shopping-cart"></i></a>
       </li>
       <li class="list-inline-item">
-        <a href="#"><i class="fas fa-heart"></i></a>
-      </li>
-      <li class="list-inline-item">
         <a href="#"><i class="fas fa-user"></i></a>
       </li>
-    </ul>
-    {% endif %}
 
+    </ul>
   </nav>
   <!--</div>   -->
 </header>

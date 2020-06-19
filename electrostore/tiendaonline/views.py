@@ -3,46 +3,41 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, 
 from .forms import Productoform, ProductoDetalle_form, EditarProductoForm, CategoriaForm
 
 # hector
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from django.db.models import Q
 from .models import Producto, Foto, Categoria
 
 
 # Create your views here.
 
-class materiales(ListView):
-    model = Producto
-    template_name = 'materiales.html'
-    context_object_name = 'tipoMaterial'
+####
 
-    def get_queryset(self):
-        return Producto.objects.filter(categoria__nombre='Materiales')
+class mostrar_categoria(ListView):
+	model= Producto
+	template_name= 'categoria.html'
+	context_object_name='productoss'
+	def get_queryset(self):
+		return Producto.objects.filter(categoria=self.kwargs['pk'])
 
+class ProductoDetalle(DetailView):
+	model= Producto
+	template_name= 'producto_detalle.html'
+	context_object_name= 'producto'
+	def get_context_data(self,**kwargs):
+		context= super().get_context_data(**kwargs)
+		producto= self.object
+		precioFinal= producto.precio - ((producto.precio * producto.promocion) / 100)
+		descuento= producto.precio != precioFinal
 
-class herramientas(ListView):
-    model = Producto
-    template_name = 'herramientas.html'
-    context_object_name = 'tipoHerramientas'
-
-    def get_queryset(self):
-        return Producto.objects.filter(categoria__nombre='Herramientas')
-
-
-class componentes(ListView):
-    model = Producto
-    template_name = 'componentes.html'
-    context_object_name = 'tipoComponentes'
-
-    def get_queryset(self):
-        return Producto.objects.filter(categoria__nombre='Componentes')
+		context['precioFinal']= precioFinal
+		context['descuento']= descuento
+		return context
 
 
-class kits(ListView):
-    model = Producto
-    template_name = 'kits.html'
-    context_object_name = 'tipoKits'
-    def get_queryset(self):
-        return Producto.objects.filter(categoria__nombre='kits de arduino')
+#####
+
+
+
 
 
 
@@ -88,26 +83,6 @@ def buscarProducto(request):
     return render(request, 'search_results.html', {'productos': productos})
 
 
-def detalleProducto(request, id):
-    imagenes = Foto.objects.filter(producto=id)
-    producto = get_object_or_404(Producto, pk=id)
-
-    precioFinal = producto.precio - \
-        ((producto.precio * producto.promocion) / 100)
-    descuento = producto.precio != precioFinal  # boolean para prueba
-
-    if request.method == "POST":
-        formulario = ProductoDetalle_form(request.POST, instance=producto)
-
-        if formulario.is_valid():
-            producto = formulario.save(commit=False)
-
-            producto.save()
-
-            return redirect('home')
-    else:
-        formulario = ProductoDetalle_form(instance=producto)
-    return render(request, 'productodetalle.html', {'producto': producto, 'imagenes': imagenes, 'precioFinal': precioFinal, 'descuento': descuento})
 
 
 def carrito(request):
