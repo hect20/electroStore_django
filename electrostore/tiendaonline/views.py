@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, HttpResponseRedirect
 #from django.shortcuts import redirect
-from .forms import Productoform, ProductoDetalle_form, EditarProductoForm, CategoriaForm
+from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm
 
 # hector
 from django.views.generic import ListView, CreateView, DetailView
@@ -54,9 +54,11 @@ class producto_promocion(ListView):
 
 
 class ProductoAlta(CreateView):
+    model= Producto
     template_name = 'producto_alta.html'
-    form_class = Productoform
-    success_url = '/lista_productos/'
+    fields= ('categoria','titulo','descripcion','precio','promocion')
+    #form_class = Productoform
+   # success_url = '/lista_productos/'
 
 
 # lista de todos los productos
