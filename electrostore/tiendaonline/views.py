@@ -20,7 +20,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-class mostrar_categoria(ListView):
+class MostrarCategoria(ListView):
 	model= Producto
 	template_name= 'categoria.html'
 	context_object_name='productoss'
