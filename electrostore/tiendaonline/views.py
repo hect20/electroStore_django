@@ -53,20 +53,20 @@ class producto_promocion(ListView):
 # carga de productos
 
 ######
-class Prueba_crispy(CreateView):
+""" class Prueba_crispy(CreateView):
     model= Producto
     template_name= 'prueba_crispy.html'
     fields= ('categoria','titulo','precio','promocion','descripcion')
-    success_url = '/lista_productos/'
+    success_url = '/lista_productos/' """
 ######
 
 
 class ProductoAlta(CreateView):
     model= Producto
     template_name = 'producto_alta.html'
-    fields= ('categoria','titulo','descripcion','precio','promocion')
+    fields= ('categoria','titulo','precio','promocion','descripcion')
     #form_class = Productoform
-   # success_url = '/lista_productos/'
+    success_url = '/lista_productos/'
 
 
 # lista de todos los productos

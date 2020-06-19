@@ -4,10 +4,37 @@
 
 {% block content %}
 <h4>Nuevo Productos:</h4>
-<form  method = "post">
-	{% csrf_token %} 
-	{{ form|crispy }}
-	<button type ="submit">Guardar</button>
+<hr class="mt-0 mb-4">
+<div class="container">
+<form method="post" novalidate>
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-6">
+		{{ form.categoria|as_crispy_field }}
+		{{ form.precio|as_crispy_field }}
+      </div>
+      <div class="col-6">
+		{{ form.titulo|as_crispy_field }}
+		{{ form.promocion|as_crispy_field }}
+      </div>
+    </div>
+    {{ form.descripcion|as_crispy_field }}
+    
+    <button type="submit" class="btn btn-success">Guardar</button>
 </form>
+
+<!-- <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-10">
+        
+        
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+      </div>
+    </div> -->
+</div>
 
 {% endblock %}
