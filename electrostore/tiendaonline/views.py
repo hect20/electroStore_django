@@ -20,9 +20,6 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-
-
-
 class mostrar_categoria(ListView):
 	model= Producto
 	template_name= 'categoria.html'
@@ -43,13 +40,7 @@ class ProductoDetalle(DetailView):
 		context['precioFinal']= precioFinal
 		context['descuento']= descuento
 		return context
-
-
 #####
-
-
-
-
 
 class producto_promocion(ListView):
     model = Producto
