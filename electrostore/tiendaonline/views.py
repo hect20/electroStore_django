@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, HttpResponseRedirect
 #from django.shortcuts import redirect
-from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm
+from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm,Productoform
 
 # hector
 from django.views.generic import ListView, CreateView, DetailView
@@ -53,11 +53,11 @@ class producto_promocion(ListView):
 # carga de productos
 
 ######
-""" class Prueba_crispy(CreateView):
+class Prueba_crispy(CreateView):
     model= Producto
     template_name= 'prueba_crispy.html'
     fields= ('categoria','titulo','precio','promocion','descripcion')
-    success_url = '/lista_productos/' """
+    success_url = '/lista_productos/'
 ######
 
 
