@@ -68,7 +68,7 @@ class listaProductos(ListView):
 
 ##
 
-class buscar_producto (ListView):
+class BuscarProducto (ListView):
 	model  = Producto
 	template_name  =  'search_results.html'
 	context_object_name= 'productos'

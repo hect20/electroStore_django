@@ -19,7 +19,7 @@ urlpatterns = [
     
     ##
 
-    path('buscar/',views.buscar_producto.as_view(), name='buscar'),
+    path('buscar/',views.BuscarProducto.as_view(), name='buscar'),
     
     ##
     
