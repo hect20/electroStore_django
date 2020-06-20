@@ -10,12 +10,24 @@ from .models import Producto, Foto, Categoria
 
 # Create your views here.
 
-def index(request):
+
+# View para Filtrar los componentes del index: Promocion y Los mas Likeados
+class producto_promocion(ListView):
+    model = Producto
+    template_name = 'index.html'
+    context_object_name = 'producto_promocion'
+
+    def get_queryset(self):
+        return Producto.objects.filter(promocion__gt=0)[0:8]
+## Fin View Index
+
+
+""" def index(request):
     context = {
         'titulo': 'gracias por visitar Electro Store!'
         # 'producto': model.producto ej?
     }
-    return render(request, 'index.html', context)
+    return render(request, 'index.html', context) """
 
 # Barra Dinamica de Categorias
 class MostrarCategoria(ListView):
@@ -42,16 +54,6 @@ class ProductoDetalle(DetailView):
 		return context
 ## Fin Detalle
 
-
-# View para Filtrar los componentes del index: Promocion y Los mas Likeados
-class producto_promocion(ListView):
-    model = Producto
-    template_name = 'index.html'
-    context_object_name = 'producto_promocion'
-
-    def get_queryset(self):
-        return Producto.objects.filter(promocion__gt=0)[0:8]
-## Fin View Index
 
 ## Prueba 
 class Prueba_crispy(CreateView):
@@ -85,6 +87,7 @@ def carrito(request):
     return render(request, 'carrito.html')
 
 ############################## Administradores######################################
+
 # Cargar Producto
 class ProductoAlta(CreateView):
     model= Producto
