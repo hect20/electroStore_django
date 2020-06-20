@@ -62,7 +62,6 @@ class Prueba_crispy(CreateView):
 ## Fin Prueba
 
 
-
 # Lista de Todos los Productos
 class listaProductos(ListView):
     model = Producto
@@ -85,7 +84,7 @@ class BuscarProducto (ListView):
 def carrito(request):
     return render(request, 'carrito.html')
 
-
+############################## Administradores######################################
 # Cargar Producto
 class ProductoAlta(CreateView):
     model= Producto
@@ -95,7 +94,7 @@ class ProductoAlta(CreateView):
     success_url = '/lista_productos/'
 
 # Editar un Producto
-class editar_producto(UpdateView):
+class ProductoModificar(UpdateView):
     model= Producto
     fields= ('categoria','titulo','precio','promocion','descripcion')
     #form_class= EditarProductoForm
@@ -103,7 +102,7 @@ class editar_producto(UpdateView):
     success_url= '/lista_productos/'
 
 # Eliminar un Producto
-class eliminar_producto(DeleteView):
+class ProductoBaja(DeleteView):
 	model= Producto
 	context_object_name= 'producto'
 	template_name= 'eliminar_producto.html'
