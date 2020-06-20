@@ -6,32 +6,33 @@
 <h4>Nuevo Productos:</h4>
 <hr class="mt-0 mb-4">
 <div class="container">
-<form method="post" novalidate>
-    {% csrf_token %}
-    <div class="row">
-      <div class="col-3">
-		{{ form.categoria|as_crispy_field }}
-		
-      </div>
-      <div class="col-3">
-		{{ form.titulo|as_crispy_field }}
-		
-	  </div>
-	  <div class="col-3">
-		{{ form.precio|as_crispy_field }}
-		
-	  </div>
-	  <div class="col-3">
-		
-		{{ form.promocion|as_crispy_field }}
-      </div>
-    </div>
-    {{ form.descripcion|as_crispy_field }}
-    
-    <button type="submit" class="btn btn-success">Guardar</button>
-</form>
+  <div class="row justify-content-center">
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-3">
+          {{ form.categoria|as_crispy_field }}
 
-<!-- <div class="container">
+        </div>
+        <div class="col-3">
+          {{ form.titulo|as_crispy_field }}
+
+        </div>
+        <div class="col-3">
+          {{ form.precio|as_crispy_field }}
+
+        </div>
+        <div class="col-3">
+
+          {{ form.promocion|as_crispy_field }}
+        </div>
+      </div>
+      {{ form.descripcion|as_crispy_field }}
+
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+
+    <!-- <div class="container">
     <div class="row justify-content-center">
       <div class="col-10">
         
@@ -43,6 +44,6 @@
         </form>
       </div>
     </div> -->
+  </div>
 </div>
-
 {% endblock %}

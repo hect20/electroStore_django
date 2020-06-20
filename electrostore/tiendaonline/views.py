@@ -3,14 +3,12 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, 
 from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm,Productoform
 
 # hector
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.db.models import Q
 from .models import Producto, Foto, Categoria
 
 
 # Create your views here.
-
-####
 
 def index(request):
     context = {
@@ -18,7 +16,6 @@ def index(request):
         # 'producto': model.producto ej?
     }
     return render(request, 'index.html', context)
-
 
 class MostrarCategoria(ListView):
 	model= Producto
@@ -40,7 +37,6 @@ class ProductoDetalle(DetailView):
 		context['precioFinal']= precioFinal
 		context['descuento']= descuento
 		return context
-#####
 
 class producto_promocion(ListView):
     model = Producto
@@ -61,12 +57,7 @@ class Prueba_crispy(CreateView):
 ######
 
 
-class ProductoAlta(CreateView):
-    model= Producto
-    template_name = 'producto_alta.html'
-    fields= ('categoria','titulo','precio','promocion','descripcion')
-    #form_class = Productoform
-    success_url = '/lista_productos/'
+
 
 
 # lista de todos los productos
@@ -75,8 +66,6 @@ class listaProductos(ListView):
     template_name = 'lista_productos.html'
 
 # buscar un producto
-
-##
 
 class BuscarProducto (ListView):
 	model  = Producto
@@ -90,30 +79,35 @@ class BuscarProducto (ListView):
 			object_list= Producto.objects.filter(Q(titulo__icontains = query)|Q(descripcion__icontains = query)).distinct()
 		return object_list
 
-##
-
 
 def carrito(request):
     return render(request, 'carrito.html')
 
 
-# omar - editar producto
-def editar_producto(request, id):
-    producto = get_object_or_404(Producto, pk=id)
-    if request.method == "POST":
-        formulario = Productoform(request.POST, instance=producto)
-        if formulario.is_valid():
-            producto = formulario.save(commit=False)
-            producto.save()
-            return redirect('lista_productos')
-    else:
-        formulario = Productoform(instance=producto)
-    return render(request, 'editar_producto.html', {'producto': formulario})
+####hector
+class ProductoAlta(CreateView):
+    model= Producto
+    template_name = 'producto_alta.html'
+    fields= ('categoria','titulo','precio','promocion','descripcion')
+    #form_class = Productoform
+    success_url = '/lista_productos/'
 
+# Editar un Producto
+class editar_producto(UpdateView):
+    model= Producto
+    fields= ('categoria','titulo','precio','promocion','descripcion')
+    #form_class= EditarProductoForm
+    template_name= 'editar_producto.html'
+    success_url= '/lista_productos/'
 
-def eliminar_producto(request, id):
-    Producto.objects.filter(pk=id).delete()
-    return redirect('lista_productos')
+# Eliminar un Producto
+class eliminar_producto(DeleteView):
+	model= Producto
+	context_object_name= 'producto'
+	template_name= 'eliminar_producto.html'
+	success_url= '/lista_productos/'
+
+#finHector
 
 
 
