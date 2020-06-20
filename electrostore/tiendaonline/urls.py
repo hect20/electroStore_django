@@ -32,9 +32,11 @@ urlpatterns = [
     ##
     path('categoria_alta/' ,views.CategoriaAlta.as_view(), name='categoria_alta'),
     path('categoria_lista/',views.CategoriaLista.as_view(), name='categoria_lista'),
-    path('categoria_lista/eliminar/<int:id>/', views.categoriaBaja, name='categoria_baja'),
 
-    path('categoria_lista/<int:pk>/', views.categoriaModificar.as_view(), name='categoria_modificar'),
+
+    path('categoria_lista/eliminar/<int:pk>/', views.CategoriaBaja.as_view(), name='categoria_baja'),
+
+    path('categoria_lista/<int:pk>/', views.CategoriaModificar.as_view(), name='categoria_modificar'),
 
 ]
 

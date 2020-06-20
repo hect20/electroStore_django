@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<form method="POST" class="post-form">
+    <!-- metodo para enviar al servidor -->
+    {% csrf_token %}
+
+    <!--Formulario-->
+    {{form.as_p}}
+    </br>
+    <!-- Mostrar el Producto a eliminar, en una tarjeta, carrousel, etc-->
+    <h3>Desea Eliminar la Categoria? </h3>
+    <h5>{{categoria.nombre}}</h5>
+    <button class="btn btn-sm btn-success" type="submit">Eliminar</button>
+    <a href="{% url 'categoria_lista' %}" class="btn btn-sm btn-secondary">Cancelar</a>
+    <!---->
+</form>
+</div>
+{% endblock %}

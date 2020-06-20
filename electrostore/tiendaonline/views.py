@@ -141,12 +141,13 @@ class CategoriaAlta(CreateView):
 
 
 
-class categoriaModificar(UpdateView):
+class CategoriaModificar(UpdateView):
     model= Categoria
     #fields= ('categoria','titulo','precio','promocion','descripcion')
     form_class= CategoriaForm
-    template_name= 'categoria_modificar.html'
     context_object_name= 'categoria'
+    template_name= 'categoria_modificar.html'
+    
     success_url= '/categoria_lista/'
 
 
@@ -166,8 +167,17 @@ class categoriaModificar(UpdateView):
     return render(request, 'categoria_modificar.html', {'categoria': formulario}) """
 ##
 
+
+class CategoriaBaja(DeleteView):
+	model= Categoria
+	context_object_name= 'categoria'
+	template_name= 'eliminar_categoria.html'
+	success_url= '/categoria_lista/'
+
+""" 
+
 # Eliminar Categoria
 def categoriaBaja(request, id):
     Categoria.objects.filter(pk=id).delete()
     return redirect('categoria_lista')
-##
+## """
