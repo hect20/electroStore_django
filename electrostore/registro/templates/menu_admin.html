@@ -1,6 +1,7 @@
+{% load has_group %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Panel 
-        {% load has_group %}
+      <!-- se cambio de lugar load--> 
         {% if user.is_staff %}
             Admin
         {% elif request.user|has_group:"Gerente" %}
@@ -20,9 +21,9 @@
             Productos
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <!-- <a class="dropdown-item" href="{% url 'producto_alta' %}">Agregar producto</a>
+            <a class="dropdown-item" href="{% url 'producto_alta' %}">Agregar producto</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{% url 'lista_productos' %}">Modificar/Eliminar</a> -->
+            <a class="dropdown-item" href="{% url 'lista_productos' %}">Modificar/Eliminar</a>
           </div>
         </li>
         <li class="nav-item dropdown">

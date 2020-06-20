@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-<h4>Modificar nombre</h4>
-<form method="POST" class="post-form">
-    <!-- metodo para enviar al servidor -->
-    {% csrf_token %}
-    {{ categoria }}
-    </br>
-    <input type="submit" class="btn btn-sm btn-success" value="Guardar">
-    <a href="{% url 'categoria_lista' %}" class="btn btn-sm btn-secondary">Cancelar</a>
-</form>
+<h4>Modificar </h4>
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <h1 class="mt-2">Carga de Producto:</h1>
+        <hr class="mt-0 mb-4">
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+      </div>
+    </div>
+</div>
 {% endblock %}

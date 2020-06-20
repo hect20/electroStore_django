@@ -17,13 +17,17 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+# Barra Dinamica de Categorias
 class MostrarCategoria(ListView):
 	model= Producto
 	template_name= 'categoria.html'
 	context_object_name='productoss'
 	def get_queryset(self):
 		return Producto.objects.filter(categoria=self.kwargs['pk'])
+# Fin Barra Dinamica
 
+
+# Detalle de un Producto, Precio Final, Descuento
 class ProductoDetalle(DetailView):
 	model= Producto
 	template_name= 'producto_detalle.html'
@@ -33,11 +37,13 @@ class ProductoDetalle(DetailView):
 		producto= self.object
 		precioFinal= producto.precio - ((producto.precio * producto.promocion) / 100)
 		descuento= producto.precio != precioFinal
-
 		context['precioFinal']= precioFinal
 		context['descuento']= descuento
 		return context
+## Fin Detalle
 
+
+# View para Filtrar los componentes del index: Promocion y Los mas Likeados
 class producto_promocion(ListView):
     model = Producto
     template_name = 'index.html'
@@ -45,46 +51,42 @@ class producto_promocion(ListView):
 
     def get_queryset(self):
         return Producto.objects.filter(promocion__gt=0)[0:8]
+## Fin View Index
 
-# carga de productos
-
-######
+## Prueba 
 class Prueba_crispy(CreateView):
     model= Producto
     template_name= 'prueba_crispy.html'
     fields= ('categoria','titulo','precio','promocion','descripcion')
     success_url = '/lista_productos/'
-######
+## Fin Prueba
 
 
 
-
-
-# lista de todos los productos
+# Lista de Todos los Productos
 class listaProductos(ListView):
     model = Producto
     template_name = 'lista_productos.html'
+## Fin Lista
 
-# buscar un producto
-
+# Buscar un Producto
 class BuscarProducto (ListView):
 	model  = Producto
 	template_name  =  'search_results.html'
 	context_object_name= 'productos'
 	def get_queryset(self):
 		query= self.request.GET.get("buscado")
-		
 		object_list= Producto.objects.all()
 		if query:
 			object_list= Producto.objects.filter(Q(titulo__icontains = query)|Q(descripcion__icontains = query)).distinct()
 		return object_list
-
+## Fin Busqueda
 
 def carrito(request):
     return render(request, 'carrito.html')
 
 
-####hector
+# Cargar Producto
 class ProductoAlta(CreateView):
     model= Producto
     template_name = 'producto_alta.html'
@@ -106,22 +108,17 @@ class eliminar_producto(DeleteView):
 	context_object_name= 'producto'
 	template_name= 'eliminar_producto.html'
 	success_url= '/lista_productos/'
-
-#########################
-
+## Fin Eliminar
 
 
-class CategoriaAlta(CreateView):
-    template_name = 'categoria_alta.html'
-    form_class = CategoriaForm
-    success_url = '/categoria_lista/'
 
-
+# Lista de Categorias
 class CategoriaLista(ListView):
     model = Categoria
     template_name = 'categoria_lista.html'
 
     #context_object_name= 'listaCategorias'
+ 
     #def get_context_data(self, **kwargs):
         #context= super().get_context_data(**kwargs)
         
@@ -132,9 +129,31 @@ class CategoriaLista(ListView):
         #context['categoriasEnProducto']= categoriasEnProducto
         #return context
 
+## Fin Lista de Categorias
 
 
-def categoriaModificar(request, id):
+# Cargar Categoria
+class CategoriaAlta(CreateView):
+    template_name = 'categoria_alta.html'
+    form_class = CategoriaForm
+    success_url = '/categoria_lista/'
+##
+
+
+
+class categoriaModificar(UpdateView):
+    model= Categoria
+    #fields= ('categoria','titulo','precio','promocion','descripcion')
+    form_class= CategoriaForm
+    template_name= 'categoria_modificar.html'
+    context_object_name= 'categoria'
+    success_url= '/categoria_lista/'
+
+
+# Editar Categorias
+
+
+""" def categoriaModificar(request, id):
     categoria = get_object_or_404(Categoria, pk=id)
     if request.method == "POST":
         formulario = CategoriaForm(request.POST, instance=categoria)
@@ -144,10 +163,11 @@ def categoriaModificar(request, id):
             return redirect('categoria_lista')
     else:
         formulario = CategoriaForm(instance=categoria)
-    return render(request, 'categoria_modificar.html', {'categoria': formulario})
+    return render(request, 'categoria_modificar.html', {'categoria': formulario}) """
+##
 
-
-
+# Eliminar Categoria
 def categoriaBaja(request, id):
     Categoria.objects.filter(pk=id).delete()
     return redirect('categoria_lista')
+##
