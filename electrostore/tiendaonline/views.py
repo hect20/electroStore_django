@@ -107,9 +107,10 @@ class eliminar_producto(DeleteView):
 	template_name= 'eliminar_producto.html'
 	success_url= '/lista_productos/'
 
-
-
 #########################
+
+
+
 class CategoriaAlta(CreateView):
     template_name = 'categoria_alta.html'
     form_class = CategoriaForm
