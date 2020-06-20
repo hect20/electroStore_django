@@ -41,9 +41,11 @@ class AdministradorSignUpView(CreateView):                           #registrars
     template_name= 'registro/registrar.html'
 
     def form_valid(self, form):
-        user= form.save()                                     #Si es valido lo guarda
+        user= form.save() 
+                                    #Si es valido lo guarda
         if (user.cargo == 'Gerente'):
             group = Group.objects.get(name='Gerente')
+            print('soy un gerenteee')
         else:
             group = Group.objects.get(name='Gestor')
         
