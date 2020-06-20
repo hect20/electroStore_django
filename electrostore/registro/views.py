@@ -43,7 +43,7 @@ class AdministradorSignUpView(CreateView):                           #registrars
     def form_valid(self, form):
         user= form.save() 
                                     #Si es valido lo guarda
-        if (user.cargo == 'Gerente'):
+        if (user.cargo == 'gerente'):
             group = Group.objects.get(name='Gerente')
             print('soy un gerenteee')
         else:
