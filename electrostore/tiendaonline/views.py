@@ -107,8 +107,6 @@ class eliminar_producto(DeleteView):
 	template_name= 'eliminar_producto.html'
 	success_url= '/lista_productos/'
 
-#finHector
-
 
 
 #########################
