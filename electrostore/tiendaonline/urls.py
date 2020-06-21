@@ -27,6 +27,9 @@ urlpatterns = [
     path('categoria_lista/<int:pk>/', views.CategoriaModificar.as_view(), name='categoria_modificar'),
     path('categoria_lista/eliminar/<int:pk>/', views.CategoriaBaja.as_view(), name='categoria_baja'),
 
+
+    path('producto_alta/<int:pk>/', views.ImagenCarga.as_view(), name='imagen_carga'),
+
 ]
 
 

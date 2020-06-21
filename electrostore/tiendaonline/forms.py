@@ -1,6 +1,6 @@
 from django import forms
 
-from tiendaonline.models import Producto,Foto, Categoria
+from tiendaonline.models import Producto,Imagen, Categoria
 
 class Productoform(forms.ModelForm): 
 	class Meta: 

@@ -5,7 +5,7 @@ from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm,Prod
 # hector
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.db.models import Q
-from .models import Producto, Foto, Categoria
+from .models import Producto, Imagen, Categoria
 
 
 # Create your views here.
@@ -153,22 +153,6 @@ class CategoriaModificar(UpdateView):
     success_url= '/categoria_lista/'
 
 
-# Editar Categorias
-
-
-""" def categoriaModificar(request, id):
-    categoria = get_object_or_404(Categoria, pk=id)
-    if request.method == "POST":
-        formulario = CategoriaForm(request.POST, instance=categoria)
-        if formulario.is_valid():
-            categoria = formulario.save(commit=False)
-            categoria.save()
-            return redirect('categoria_lista')
-    else:
-        formulario = CategoriaForm(instance=categoria)
-    return render(request, 'categoria_modificar.html', {'categoria': formulario}) """
-##
-
 
 class CategoriaBaja(DeleteView):
 	model= Categoria
@@ -176,10 +160,10 @@ class CategoriaBaja(DeleteView):
 	template_name= 'eliminar_categoria.html'
 	success_url= '/categoria_lista/'
 
-""" 
 
-# Eliminar Categoria
-def categoriaBaja(request, id):
-    Categoria.objects.filter(pk=id).delete()
-    return redirect('categoria_lista')
-## """
+
+class ImagenCarga(CreateView):
+    model= Imagen
+    template_name= 'imagen_carga.html'
+    fields= '__all__'
+    success_url = '/lista_productos/'
