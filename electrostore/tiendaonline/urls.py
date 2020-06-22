@@ -16,6 +16,7 @@ urlpatterns = [
     path('lista_productos/<int:pk>/', views.ProductoModificar.as_view(), name='editar_producto'),
     path('lista_productos/eliminar/<int:pk>/', views.ProductoBaja.as_view(), name='eliminar_producto'),
 
+    path('lista_productos/imagen/<int:pk>/', views.ImagenCarga.as_view(), name='carga_imagen_producto'),
 
     path('buscar/',views.BuscarProducto.as_view(), name='buscar'),
     

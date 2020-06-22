@@ -25,7 +25,8 @@
             <td>{{producto.categoria}}</td>
             <td>
                 <a href="/lista_productos/{{ producto.id }}">Editar</a> | 
-                <a href="/lista_productos/eliminar/{{ producto.id }}">Eliminar</a>
+                <a href="/lista_productos/eliminar/{{ producto.id }}">Eliminar</a> | 
+                <a href="/lista_productos/imagen/{{ producto.id }}">Agregar Imagen</a>
             </td>
         </tr>
         {% endfor %}
