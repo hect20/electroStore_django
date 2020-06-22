@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tiendaonline.apps.TiendaonlineConfig',
     'registro.apps.RegistroConfig',
-    'crispy_forms'
+    
+    'crispy_forms',
 ]
 
 CRISPY_TEMPLATE_PACK= 'bootstrap4'
+
+CART_SESSION_ID = 'carrito'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
