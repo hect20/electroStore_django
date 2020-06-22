@@ -11,7 +11,7 @@ urlpatterns = [
     path('producto_detalle/<int:pk>/',views.ProductoDetalle.as_view(), name='producto_detalle'),
 
 
-    path('lista_productos/',views.listaProductos.as_view(), name='lista_productos'),
+    path('lista_productos/',views.ListaProductos.as_view(), name='lista_productos'),
     path('producto_alta/' ,views.ProductoAlta.as_view(), name='producto_alta'),
     path('lista_productos/<int:pk>/', views.ProductoModificar.as_view(), name='editar_producto'),
     path('lista_productos/eliminar/<int:pk>/', views.ProductoBaja.as_view(), name='eliminar_producto'),
@@ -20,7 +20,7 @@ urlpatterns = [
 
     path('buscar/',views.BuscarProducto.as_view(), name='buscar'),
     
-    path('carro/',views.carrito, name='carro'),
+    path('carrito/<int:pk>',views.Carrito.as_view(), name='carrito'),
 
 
     path('categoria_lista/',views.CategoriaLista.as_view(), name='categoria_lista'),

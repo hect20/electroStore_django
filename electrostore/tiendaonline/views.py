@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, 
 from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm,Productoform
 
 # hector
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView,TemplateView
 from django.db.models import Q
 from .models import Producto, Imagen, Categoria
 
@@ -22,12 +22,6 @@ class producto_promocion(ListView):
 ## Fin View Index
 
 
-""" def index(request):
-    context = {
-        'titulo': 'gracias por visitar Electro Store!'
-        # 'producto': model.producto ej?
-    }
-    return render(request, 'index.html', context) """
 
 # Barra Dinamica de Categorias
 class MostrarCategoria(ListView):
@@ -55,17 +49,8 @@ class ProductoDetalle(DetailView):
 ## Fin Detalle
 
 
-## Prueba 
-class Prueba_crispy(CreateView):
-    model= Producto
-    template_name= 'prueba_crispy.html'
-    fields= ('categoria','titulo','precio','promocion','descripcion')
-    success_url = '/lista_productos/'
-## Fin Prueba
-
-
 # Lista de Todos los Productos
-class listaProductos(ListView):
+class ListaProductos(ListView):
     model = Producto
     template_name = 'lista_productos.html'
 ## Fin Lista
@@ -83,8 +68,12 @@ class BuscarProducto (ListView):
 		return object_list
 ## Fin Busqueda
 
-def carrito(request):
-    return render(request, 'carrito.html')
+class Carrito(TemplateView):
+    template_name='carrito.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['articulos'] = 'hola'
+        return context
 
 ############################## Administradores######################################
 
@@ -118,18 +107,6 @@ class ProductoBaja(DeleteView):
 class CategoriaLista(ListView):
     model = Categoria
     template_name = 'categoria_lista.html'
-
-    #context_object_name= 'listaCategorias'
- 
-    #def get_context_data(self, **kwargs):
-        #context= super().get_context_data(**kwargs)
-        
-        #categoriasEnProducto= Producto.objects.filter(categoria__id__isnull=False)
-        #categorias= Categoria.objects.all()
-        #categorias.objects.filter
-        
-        #context['categoriasEnProducto']= categoriasEnProducto
-        #return context
 
 ## Fin Lista de Categorias
 
