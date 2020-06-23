@@ -22,6 +22,7 @@ urlpatterns = [
     # apps tienda online
     path('', include('tiendaonline.urls')),
     path('', include('registro.urls')),
+    path('', include('cart.urls')),
     
     
 ]
