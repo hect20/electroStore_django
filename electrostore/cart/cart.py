@@ -46,10 +46,10 @@ class Cart(object):
                 self.cart[product.id] = {
                     'userid': self.request,
                     'product_id': product.id,
-                    'name': product.name,
+                    'titulo': product.titulo,
                     'quantity': 1,
-                    'price': str(product.price),
-                    'image': product.image.url
+                    'price': str(product.precio),
+                    #'image': product.image.url
                 }
 
         self.save()
