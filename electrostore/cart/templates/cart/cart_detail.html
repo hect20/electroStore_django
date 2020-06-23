@@ -7,7 +7,7 @@ Total Length :: {{request.session.cart|length}}
 Cart Detail:
 <br>
 {% for key,value in request.session.cart.items %}
-{{value.titulo}} {{value.precio}} {{value.quantity}}  Total {{ value.precio|multiply:value.quantity }}
+Titulo: {{value.titulo}} Precio: {{value.precio}} Cantidad: {{value.quantity}}  Total: {{ value.precio|multiply:value.quantity }}
 
 
 {% endfor %}
