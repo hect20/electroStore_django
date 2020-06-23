@@ -8,6 +8,6 @@ Cart Detail:
 <br>
 {% for key,value in request.session.cart.items %}
 Titulo: {{value.titulo}} Precio: {{value.precio}} Cantidad: {{value.quantity}}  Total: {{ value.precio|multiply:value.quantity }}
-
+<br>
 
 {% endfor %}
