@@ -10,6 +10,10 @@ Cart Detail:
 <br>
 {% for key,value in request.session.cart.items %}
 Titulo: {{value.titulo}} Precio: {{value.precio}} Cantidad: {{value.quantity}}  Total: {{ value.precio|multiply:value.quantity }}
+<a href="{% url 'item_decrement' value.product_id %}"> decremento </a>
+<a href="{% url 'item_increment' value.product_id %}"> incrementar </a>
+<a href="{% url 'item_clear' value.product_id %}"> eliminar </a>
+
 <br>
 
 {% endfor %}
