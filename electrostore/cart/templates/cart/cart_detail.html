@@ -8,7 +8,7 @@ Cart Detail:
 <br>
 {% for key,value in request.session.cart.items %}
 {{value.titulo}} {{value.precio}} {{value.quantity}}  Total {{ value.precio|multiply:value.quantity }}
-<a href="{% url'cart_clear' %}"> Borrar el carrito </a>
+<!-- <a href="{% url'cart_clear' %}"> Borrar el carrito </a> -->
 <br>
 
 {% endfor %}
