@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
-{% load static %}
+
 {% load cart_tag %}
 
+{% block content %}
 Total Length :: {{request.session.cart|length}}
 <br>
 Cart Detail:
@@ -11,3 +12,5 @@ Titulo: {{value.titulo}} Precio: {{value.precio}} Cantidad: {{value.quantity}}  
 <br>
 
 {% endfor %}
+
+{% endblock content %}

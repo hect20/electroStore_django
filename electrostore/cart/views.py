@@ -48,4 +48,5 @@ def cart_clear(request):
 
 @login_required(login_url="/users/login")
 def cart_detail(request):
+    print('ingresando al detalle')
     return render(request, 'cart/cart_detail.html')
