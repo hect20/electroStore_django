@@ -1,29 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% if object_list%}
-        {% for categoria in object_list %}
-        <tr>
-            <th scope="row">{{categoria.id}}</th>
-            <td>{{categoria.nombre}}</td>
-            <td>
-                <a href="/categoria_lista/{{ categoria.id }}">Editar</a> | 
-                <a href="/categoria_lista/eliminar/{{ categoria.id }}">Eliminar</a>
-            </td>
-        </tr>
-        {% endfor %}
-        {% endif %}
-    </tbody>
-</table>
-</div>
+{% load has_group %}
+
+{% if request.user|has_group:"Gerente" or request.user|has_group:"Gestor" or user.is_staff %}
+    <div class="container">
+        <br>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if object_list%}
+                {% for categoria in object_list %}
+                <tr>
+                    <th scope="row">{{categoria.id}}</th>
+                    <td>{{categoria.nombre}}</td>
+                    <td>
+                        <a href="/categoria_lista/{{ categoria.id }}">Editar</a> |
+                        <a href="/categoria_lista/eliminar/{{ categoria.id }}">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+        <br>
+        {% include 'paginacion.html' %}
+    </div>
+{% else %}
+<blockquote class="blockquote text-center">
+    <p class="mb-0">Necesita permiso de administrador para continuar</p>
+    <a href="{% url 'home' %}">Volver a inicio</a>
+  </blockquote>
+    
+{% endif%}
 
 {% endblock %}

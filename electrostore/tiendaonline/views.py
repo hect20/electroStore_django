@@ -5,10 +5,22 @@ from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm,Prod
 # hector
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView,TemplateView
 from django.db.models import Q
-from .models import Producto, Imagen, Categoria
+from .models import Producto, Imagen, Categoria, Administrador, Usuario, User
+#omar - para restringir accesos
+from django.contrib.auth.decorators import login_required
 
-
+from django.contrib.auth import models
+from .mixins import AdminPermissionsMixin, GerentePermissionsMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
+
+
+
+
+
+
+
+
 
 
 # View para Filtrar los componentes del index: Promocion y Los mas Likeados
@@ -50,9 +62,10 @@ class ProductoDetalle(DetailView):
 
 
 # Lista de Todos los Productos
-class ListaProductos(ListView):
+class ListaProductos(AdminPermissionsMixin, ListView): #LoginRequiredMixin
     model = Producto
     template_name = 'lista_productos.html'
+    paginate_by= 8
 ## Fin Lista
 
 # Buscar un Producto
@@ -104,9 +117,10 @@ class ProductoBaja(DeleteView):
 
 
 # Lista de Categorias
-class CategoriaLista(ListView):
+class CategoriaLista(LoginRequiredMixin, ListView):
     model = Categoria
     template_name = 'categoria_lista.html'
+    paginate_by= 3
 
 ## Fin Lista de Categorias
 
@@ -144,3 +158,9 @@ class ImagenCarga(CreateView):
     template_name= 'imagen_carga.html'
     fields= '__all__'
     success_url = '/lista_productos/'
+
+
+
+
+
+

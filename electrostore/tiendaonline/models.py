@@ -12,6 +12,11 @@ class Categoria(models.Model):
     
     objects = models.Manager()
 
+    def delete(self, *args, **kwargs):
+        if Categoria.objects.filter(producto__pk= self.pk).exists():
+            raise Exception("tiene relacion...................................")
+        super().delete(*args, **kwargs)
+
 #class Usuario(models.Model):
 #    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
 class  Usuario(User):
