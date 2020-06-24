@@ -12,14 +12,27 @@ from .models import Producto, Imagen, Categoria
 
 
 # View para Filtrar los componentes del index: Promocion y Los mas Likeados
-class producto_promocion(ListView):
+class index(ListView):
+    model= Producto
+    template_name= 'index.html'
+    context_object_name= 'producto'
+    def get_context_data(self,**kwargs):
+        context= super().get_context_data(**kwargs)
+        productos= Producto.objects.filter(promocion__gt=0)[0:8]
+        #producto_promocion= Imagen.objects.filter(producto__id=producto)
+        context['producto_promocion']= productos
+        return context
+
+
+
+""" class producto_promocion(ListView):
     model = Producto
     template_name = 'index.html'
     context_object_name = 'producto_promocion'
 
     def get_queryset(self):
         return Producto.objects.filter(promocion__gt=0)[0:8]
-## Fin View Index
+## Fin View Index """
 
 
 
