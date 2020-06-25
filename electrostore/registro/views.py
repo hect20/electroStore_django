@@ -14,8 +14,8 @@ class SignUpView(CreateView):                           #registrarse
     template_name= 'registro/registrar.html'
 
     def form_valid(self, form):
-        user= form.save()                                     #Si es valido lo guarda
-     
+        user= form.save()   #Si es valido lo guarda
+        Group.objects.get_or_create(name='Usuario') #crea el grupo si no existe
         group = Group.objects.get(name='Usuario')
         user.groups.add(group)
         
@@ -42,14 +42,12 @@ class AdministradorSignUpView(CreateView):                           #registrars
 
     def form_valid(self, form):
         user= form.save() 
-                                    #Si es valido lo guarda
         if (user.cargo == 'gerente'):
+            Group.objects.get_or_create(name='Gerente')
             group = Group.objects.get(name='Gerente')
-            print('soy un gerenteee')
         else:
+            Group.objects.get_or_create(name='Gestor')
             group = Group.objects.get(name='Gestor')
         
-        user.groups.add(group)     
-        
-
+        user.groups.add(group)             
         return redirect('/')

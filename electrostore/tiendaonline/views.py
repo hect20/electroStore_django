@@ -66,6 +66,7 @@ class ProductoDetalle(DetailView):
 class ListaProductos(ListView):
     model = Producto
     template_name = 'lista_productos.html'
+    paginate_by = 8
 ## Fin Lista
 
 # Buscar un Producto
