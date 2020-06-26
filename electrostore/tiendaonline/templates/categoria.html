@@ -1,15 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Aqui se muestra como usted desee -->
-
-<ul>
+<div class="container">  
     {% for pro in productoss %}
-    <li>
-        <a href="/producto_detalle/{{pro.id}}">{{pro.titulo}}</a>
-    </li>
+    <div class="col-xs-4 col-lg-4 " style="float:left">
+        <div class="card mb-2">
+           <img class="card-img-top"
+            {% load static %}
+             src="/static/img/prod1.jpg" alt="Card image cap"> 
+           <div class="card-body">
+             <h4 class="card-title">{{pro.titulo}}  </h4>
+             <p class="mb-3">
+                <span class="item_price">{{ pro.descripcion }}</span>
+                <span class="item_price">${{ pro.precio }}</span>
+                </p>
+             <a href="/producto_detalle/{{ pro.id }}" class="btn btn-primary">Ver</a>
+             
+    
+           </div>
+         </div>
+    </div>
+    
     {% endfor %}
-</ul>
-<!-- fin -->
+
+</div>
 
 {% endblock content %}
