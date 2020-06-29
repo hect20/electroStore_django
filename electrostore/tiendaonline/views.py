@@ -174,11 +174,14 @@ def ProductoAltaPrueba(request):
             producto_form.save()
             print('se guardo')
             for form in formset.cleaned_data:
-                print(form)
-                imagen= form['nombreArchivo']
-                foto= Imagen(producto=producto_form,nombreArchivo=imagen)
-                foto.save()
-            messages.success(request,'imagen Cargada')
+                try:
+                    imagen= form['nombreArchivo']
+                    foto= Imagen(producto=producto_form,nombreArchivo=imagen)
+                    foto.save()
+                except Exception as e:
+                    break
+
+            
             return HttpResponseRedirect("/lista_productos/")
         else:
             print ('productoForm.errors, formset.errors')
