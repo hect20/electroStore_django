@@ -2,10 +2,19 @@
 {% block title%} Producto!! {% endblock %}
 
 {% block content %}
-<h4>Nueva Categoria:</h4>
+<br>
+{% load has_group %}
+{% if user.is_authenticated and not request.user|has_group:"Usuario" %}
+<h4>Nueva categoría:</h4>
 <form  method = "post">
 	{% csrf_token %} 
 	{{form.as_p}}
 	<button type ="submit">Guardar</button>
 </form>	
+{% else %}
+<div class="mx-auto" style="width: 50%;">
+  <h4>Necesita permisos de administrador para continuar.</h4>
+  <a class="btn btn-primary" href="{% url 'home' %}">Volver</a>
+</div>
+{% endif %}
 {% endblock %}

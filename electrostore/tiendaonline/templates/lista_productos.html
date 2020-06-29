@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
+<br>
+{% load has_group %}
+{% if user.is_authenticated and not request.user|has_group:"Usuario" %}
 <div class="container">
-    <br>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -37,4 +39,10 @@
     <br>
     {% include 'pagination.html' %}
 </div>
+{% else %}
+<div class="mx-auto" style="width: 50%;">
+  <h4>Necesita permisos de administrador para continuar.</h4>
+  <a class="btn btn-primary" href="{% url 'home' %}">Volver</a>
+</div>
+{% endif %}
 {% endblock %}

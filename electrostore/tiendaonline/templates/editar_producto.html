@@ -3,7 +3,11 @@
 {% block title%} Producto!! {% endblock %}
 
 {% block content %}
-<h4>Nuevo Productos:</h4>
+<br>
+{% load has_group %}
+{% if user.is_authenticated and not request.user|has_group:"Usuario" %}
+
+<h4>Editar producto:</h4>
 <hr class="mt-0 mb-4">
 <div class="container">
   <div class="row justify-content-center">
@@ -33,4 +37,11 @@
     </form>
   </div>
 </div>
+{% else %}
+<div class="mx-auto" style="width: 50%;">
+  <h4>Necesita permisos de administrador para continuar.</h4>
+  <a class="btn btn-primary" href="{% url 'home' %}">Volver</a>
+</div>
+{% endif %}
+
 {% endblock %}

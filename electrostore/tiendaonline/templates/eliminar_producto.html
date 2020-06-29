@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<br>
+{% load has_group %}
+{% if user.is_authenticated and not request.user|has_group:"Usuario" %}
 <div class="container">
 <form method="POST" class="post-form">
     <!-- metodo para enviar al servidor -->
@@ -8,13 +11,18 @@
 
     <!--Formulario-->
     {{form.as_p}}
-    </br>
     <!-- Mostrar el Producto a eliminar, en una tarjeta, carrousel, etc-->
-    <h3>Desea Eliminar El Producto? </h3>
+    <h3>Desea eliminar el producto? </h3>
     <h5>{{producto.titulo}}</h5>
     <button class="btn btn-sm btn-success" type="submit">Eliminar</button>
     <a href="{% url 'lista_productos' %}" class="btn btn-sm btn-secondary">Cancelar</a>
     <!---->
 </form>
 </div>
+{% else %}
+<div class="mx-auto" style="width: 50%;">
+  <h4>Necesita permisos de administrador para continuar.</h4>
+  <a class="btn btn-primary" href="{% url 'home' %}">Volver</a>
+</div>
+{% endif %}
 {% endblock %}

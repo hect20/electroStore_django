@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, HttpResponseRedirect
 #from django.shortcuts import redirect
-from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm,Productoform
+from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm,Productoform, ImagenForm
 
 # hector
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView,TemplateView
@@ -156,5 +156,6 @@ class CategoriaBaja(DeleteView):
 class ImagenCarga(CreateView):
     model= Imagen
     template_name= 'imagen_carga.html'
-    fields= '__all__'
+    #fields= '__all__'
+    form_class = ImagenForm
     success_url = '/lista_productos/'

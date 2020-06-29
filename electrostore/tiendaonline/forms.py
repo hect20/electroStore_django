@@ -47,3 +47,15 @@ class CategoriaForm(forms.ModelForm):
 		labels={
 			'nombre' : 'Nombre',
 		}
+
+
+
+class ImagenForm(forms.ModelForm): 
+	class Meta: 
+		model = Imagen 
+		fields=[
+			'nombreArchivo',
+		]
+		labels={
+			'nombreArchivo' : 'Imagen',
+		}

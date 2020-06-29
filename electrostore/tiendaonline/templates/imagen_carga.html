@@ -2,15 +2,21 @@
 {% block title%} imagen {% endblock %}
 
 {% block content %}
+<br>
+{% load has_group %}
+{% if user.is_authenticated and not request.user|has_group:"Usuario" %}
 <h4>Nueva Imagen:</h4>
 <div class="container">        
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
-       
-        
         <input type="submit" value="Cargar" class="btn btn-primary">
     </form>
 </div>
-
+{% else %}
+<div class="mx-auto" style="width: 50%;">
+  <h4>Necesita permisos de administrador para continuar.</h4>
+  <a class="btn btn-primary" href="{% url 'home' %}">Volver</a>
+</div>
+{% endif %}
 {% endblock %}
