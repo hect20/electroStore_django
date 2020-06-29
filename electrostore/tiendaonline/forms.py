@@ -59,3 +59,23 @@ class ImagenForm(forms.ModelForm):
 		labels={
 			'nombreArchivo' : 'Imagen',
 		}
+
+class ProductoFormPrueba(forms.ModelForm):
+	titulo= forms.CharField(max_length=60)
+	descripcion= forms.CharField(max_length=3000)
+	precio= forms.DecimalField(max_digits=7, decimal_places=2)
+	promocion= forms.IntegerField()
+	#categoria= forms.ModelChoiceField(queryset= Producto.objects.all())
+
+	class Meta:
+		model= Producto
+		fields= ['titulo','descripcion','precio','promocion','categoria']
+		labels= {'titulo':'titulo','descripcion':'descripcion','precio':'precio','promocion':'promocion','categoria':'categoria'}
+		
+class ImagenFormPrueba(forms.ModelForm):
+	nombreArchivo= forms.ImageField()
+	class Meta:
+		model:Imagen
+		fields= ('nombreArchivo',)
+
+

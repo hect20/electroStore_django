@@ -1,13 +1,14 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, HttpResponseRedirect
+from django.contrib import messages
 #from django.shortcuts import redirect
-from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm,Productoform, ImagenForm
-
+from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm,Productoform, ImagenForm, ProductoFormPrueba, ImagenFormPrueba
+from django.template import RequestContext
 # hector
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView,TemplateView
 from django.db.models import Q
 from .models import Producto, Imagen, Categoria
 
-
+from django.forms import modelformset_factory
 # Create your views here.
 
 
@@ -159,3 +160,28 @@ class ImagenCarga(CreateView):
     fields= '__all__'
     #form_class = ImagenForm
     success_url = '/lista_productos/'
+
+
+
+def ProductoAltaPrueba(request):
+    ImagenFormSet= modelformset_factory(Imagen,form=ImagenFormPrueba,extra=3)
+    if request.method == 'POST':
+        productoForm= ProductoFormPrueba(request.POST)
+        formset= ImagenFormSet(request.POST,request.FILES,queryset=Imagen.objects.none())
+        if productoForm.is_valid() and formset.is_valid():
+            producto_form= productoForm.save(commit=False)
+
+            producto_form.save()
+            for form in formset.cleaned_data:
+                imagen= form['nombreArchivo']
+                foto= Imagen(producto=producto_form,nombreArchivo=imagen)
+                foto.save()
+            messages.success(request,'imagen Cargada')
+            return HttpResponseRedirect("/lista_productos/")
+        else:
+            print ('productoForm.errors, formset.errors')
+    else:
+        productoForm= ProductoFormPrueba()
+        formset= ImagenFormSet(queryset= Imagen.objects.none())
+    return render(request,'producto_alta_prueba.html',{'productoForm':productoForm,'formset':formset})
+
