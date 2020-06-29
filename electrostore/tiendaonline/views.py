@@ -170,9 +170,11 @@ def ProductoAltaPrueba(request):
         formset= ImagenFormSet(request.POST, request.FILES, queryset=Imagen.objects.none())
         if productoForm.is_valid() and formset.is_valid():
             producto_form= productoForm.save(commit=False)
-
+            
             producto_form.save()
+            print('se guardo')
             for form in formset.cleaned_data:
+                print(form)
                 imagen= form['nombreArchivo']
                 foto= Imagen(producto=producto_form,nombreArchivo=imagen)
                 foto.save()

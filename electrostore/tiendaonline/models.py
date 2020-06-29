@@ -49,8 +49,8 @@ class Producto(models.Model):
     
 
 class Imagen(models.Model):
-    nombreArchivo= models.ImageField(upload_to='static/imgproducto')
-    producto= models.ForeignKey(Producto, null=False, blank= False, on_delete= models.CASCADE)
+    nombreArchivo= models.ImageField(upload_to='static/imgproducto', default= default.png,blank=True, null=True )
+    producto= models.ForeignKey(Producto, default=None, null=False, blank= False, on_delete= models.CASCADE)
     
     #agregado
     objects=models.Manager()
