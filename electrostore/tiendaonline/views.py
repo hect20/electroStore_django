@@ -172,7 +172,7 @@ def ProductoAltaPrueba(request):
             producto_form= productoForm.save(commit=False)
             
             producto_form.save()
-            print('se guardo')
+           
             for form in formset.cleaned_data:
                 try:
                     imagen= form['nombreArchivo']
