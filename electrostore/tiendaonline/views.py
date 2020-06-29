@@ -156,6 +156,6 @@ class CategoriaBaja(DeleteView):
 class ImagenCarga(CreateView):
     model= Imagen
     template_name= 'imagen_carga.html'
-    #fields= '__all__'
-    form_class = ImagenForm
+    fields= '__all__'
+    #form_class = ImagenForm
     success_url = '/lista_productos/'
