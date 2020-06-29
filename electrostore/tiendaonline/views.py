@@ -177,7 +177,7 @@ def ProductoAlta(request):
                     imagen= form['nombreArchivo']
                     foto= Imagen(producto=producto_form,nombreArchivo=imagen)
                     foto.save()
-                except Exception:
+                except Exception as e:
                     break
             return HttpResponseRedirect("/lista_productos/")
         else:

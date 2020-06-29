@@ -62,7 +62,6 @@ class ImagenForm(forms.ModelForm):
 
 class ProductoFormPrueba(forms.ModelForm):
 	
-	#categoria= forms.ModelChoiceField(queryset= Producto.objects.all())
 
 	class Meta:
 		model= Producto
@@ -75,6 +74,5 @@ class ImagenFormPrueba(forms.ModelForm):
 	nombreArchivo= forms.ImageField()
 	class Meta:
 		model:Imagen
-		fields= ('nombreArchivo',)
-
+		fields= ('nombreArchivo',) 
 
