@@ -2,8 +2,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, 
 from django.contrib import messages
 #from django.shortcuts import redirect
 from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm, ImagenForm, ProductoFormPrueba, ImagenFormPrueba
-from django.template import RequestContext
-# hector
+
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView,TemplateView
 from django.db.models import Q
 from .models import Producto, Imagen, Categoria
