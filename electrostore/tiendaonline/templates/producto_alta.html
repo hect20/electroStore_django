@@ -14,25 +14,30 @@
       {% csrf_token %}
       <div class="row">
         <div class="col-3">
-          {{ form.categoria|as_crispy_field }}
+          {{ productoForm.categoria|as_crispy_field }}
+        </div>
+        <div class="col-3">
+          {{ productoForm.titulo|as_crispy_field }}
+        </div>
+        <div class="col-3">
+          {{ productoForm.precio|as_crispy_field }}
 
         </div>
         <div class="col-3">
-          {{ form.titulo|as_crispy_field }}
 
-        </div>
-        <div class="col-3">
-          {{ form.precio|as_crispy_field }}
-
-        </div>
-        <div class="col-3">
-
-          {{ form.promocion|as_crispy_field }}
+          {{ productoForm.promocion|as_crispy_field }}
         </div>
       </div>
-      {{ form.descripcion|as_crispy_field }}
-
+      {{ productoForm.descripcion|as_crispy_field }}
+      <div class="row">
+      {{ formset.management_form }}
+      {% for form in formset %}
+      <div class="col-4">{{ form }}</div>
+      {% endfor %}
+      </div>
+      <br>
       <button type="submit" class="btn btn-success">Guardar</button>
+
     </form>
 
     <!-- <div class="container">

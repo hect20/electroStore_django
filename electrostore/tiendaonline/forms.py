@@ -2,7 +2,7 @@ from django import forms
 
 from tiendaonline.models import Producto,Imagen, Categoria
 
-class Productoform(forms.ModelForm): 
+""" class Productoform(forms.ModelForm): 
 	class Meta: 
 		model = Producto 
 		fields=[
@@ -19,7 +19,7 @@ class Productoform(forms.ModelForm):
 		widgets={
 			'descripcion': forms.Textarea(attrs={'class':'form-control'}),
 		}
-
+ """
 
 class ProductoDetalle_form(forms.ModelForm):
 	class Meta:
@@ -61,17 +61,16 @@ class ImagenForm(forms.ModelForm):
 		}
 
 class ProductoFormPrueba(forms.ModelForm):
-	titulo= forms.CharField(max_length=60)
-	descripcion= forms.CharField(max_length=3000)
-	precio= forms.DecimalField(max_digits=7, decimal_places=2)
-	promocion= forms.IntegerField()
+	
 	#categoria= forms.ModelChoiceField(queryset= Producto.objects.all())
 
 	class Meta:
 		model= Producto
 		fields= ['titulo','descripcion','precio','promocion','categoria']
-		labels= {'titulo':'titulo','descripcion':'descripcion','precio':'precio','promocion':'promocion','categoria':'categoria'}
-		
+		labels= {'titulo':'Título','descripcion':'Descripción','precio':'Precio','promocion':'Promoción','categoria':'Categoría'}
+		widgets={
+			'descripcion': forms.Textarea(attrs={'class':'form-control'}),
+		}
 class ImagenFormPrueba(forms.ModelForm):
 	nombreArchivo= forms.ImageField()
 	class Meta:

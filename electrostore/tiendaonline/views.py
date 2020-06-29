@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, HttpResponseRedirect
 from django.contrib import messages
 #from django.shortcuts import redirect
-from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm,Productoform, ImagenForm, ProductoFormPrueba, ImagenFormPrueba
+from .forms import  ProductoDetalle_form, EditarProductoForm, CategoriaForm, ImagenForm, ProductoFormPrueba, ImagenFormPrueba
 from django.template import RequestContext
 # hector
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView,TemplateView
@@ -93,12 +93,12 @@ class Carrito(TemplateView):
 ############################## Administradores######################################
 
 # Cargar Producto
-class ProductoAlta(CreateView):
+""" class ProductoAlta(CreateView):
     model= Producto
     template_name = 'producto_alta.html'
     fields= ('categoria','titulo','precio','promocion','descripcion')
     #form_class = Productoform
-    success_url = '/lista_productos/'
+    success_url = '/lista_productos/' """
 
 # Editar un Producto
 class ProductoModificar(UpdateView):
@@ -162,7 +162,7 @@ class ImagenCarga(CreateView):
 
 
 
-def ProductoAltaPrueba(request):
+def ProductoAlta(request):
     ImagenFormSet= modelformset_factory(Imagen,form=ImagenFormPrueba,extra=3)
     if request.method == 'POST':
         productoForm= ProductoFormPrueba(request.POST)
@@ -177,7 +177,7 @@ def ProductoAltaPrueba(request):
                     imagen= form['nombreArchivo']
                     foto= Imagen(producto=producto_form,nombreArchivo=imagen)
                     foto.save()
-                except Exception as e:
+                except Exception:
                     break
             return HttpResponseRedirect("/lista_productos/")
         else:
@@ -185,5 +185,5 @@ def ProductoAltaPrueba(request):
     else:
         productoForm= ProductoFormPrueba()
         formset= ImagenFormSet(queryset= Imagen.objects.none())
-    return render(request,'producto_alta_prueba.html',{'productoForm':productoForm,'formset':formset})
+    return render(request,'producto_alta.html',{'productoForm':productoForm,'formset':formset})
 

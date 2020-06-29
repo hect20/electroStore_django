@@ -12,7 +12,10 @@ urlpatterns = [
 
 
     path('lista_productos/',views.ListaProductos.as_view(), name='lista_productos'),
-    path('producto_alta/' ,views.ProductoAlta.as_view(), name='producto_alta'),
+    #path('producto_alta/' ,views.ProductoAlta.as_view(), name='producto_alta'),
+
+    path('producto_alta/',views.ProductoAlta, name='producto_alta'),
+
     path('lista_productos/<int:pk>/', views.ProductoModificar.as_view(), name='editar_producto'),
     path('lista_productos/eliminar/<int:pk>/', views.ProductoBaja.as_view(), name='eliminar_producto'),
 
@@ -34,7 +37,7 @@ urlpatterns = [
     
     path('carrito/<int:pk>',views.Carrito.as_view(), name='carrito'),
 
-    path('producto_alta2/',views.ProductoAltaPrueba, name='producto-alta2'),
+    
 
 ]
 
