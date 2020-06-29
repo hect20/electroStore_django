@@ -153,7 +153,6 @@ class CategoriaBaja(DeleteView):
 	success_url= '/categoria_lista/'
 
 
-
 class ImagenCarga(CreateView):
     model= Imagen
     template_name= 'imagen_carga.html'
@@ -180,8 +179,6 @@ def ProductoAltaPrueba(request):
                     foto.save()
                 except Exception as e:
                     break
-
-            
             return HttpResponseRedirect("/lista_productos/")
         else:
             print ('productoForm.errors, formset.errors')
