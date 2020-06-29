@@ -167,7 +167,7 @@ def ProductoAltaPrueba(request):
     ImagenFormSet= modelformset_factory(Imagen,form=ImagenFormPrueba,extra=3)
     if request.method == 'POST':
         productoForm= ProductoFormPrueba(request.POST)
-        formset= ImagenFormSet(request.POST,request.FILES,queryset=Imagen.objects.none())
+        formset= ImagenFormSet(request.POST, request.FILES, queryset=Imagen.objects.none())
         if productoForm.is_valid() and formset.is_valid():
             producto_form= productoForm.save(commit=False)
 
