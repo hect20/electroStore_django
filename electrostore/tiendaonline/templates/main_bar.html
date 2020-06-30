@@ -35,11 +35,11 @@
             <a class="nav-link" href="#">Hola, {{ user.username }}</a>
           </li>
           <li class="nav-item text-inline">
-            <a class="nav-link" href="{% url 'cerrar_sesion' %}">Cerrar Sesion</a>
+            <a class="nav-link" href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
           </li>
         {% else %}
           <li class="nav-item text-inline">
-            <a class="nav-link" href="{% url 'iniciar_sesion' %}">IniciarSesion</a>
+            <a class="nav-link" href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a>
           </li>
           <li class="nav-item text-inline">
             <a class="nav-link" href="{% url 'registrarse' %}">Registrarse</a>

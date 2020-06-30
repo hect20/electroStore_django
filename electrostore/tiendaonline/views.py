@@ -22,6 +22,10 @@ class index(ListView):
         #producto_promocion= Imagen.objects.filter(producto__id=producto)
         imagenes= Imagen.objects.all()
         #ofertas= productos.object.filter()
+
+        categorias= Categoria.objects.all()
+
+        context['categorias']= categorias
         context['producto_promocion']= productos
         context['imagenes']=imagenes
 

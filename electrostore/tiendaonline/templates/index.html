@@ -8,4 +8,21 @@
   {% include "carousel_ofertas.html" %}
   <hr>
 
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+        <tr>
+          {% for cat in categorias %}
+          <td>
+            <a class="nav-link" href="/categorias/{{cat.id}}"><i class="fas fa-globe"></i> {{cat.nombre}}</a>
+            
+          </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
 {% endblock %}
