@@ -11,25 +11,47 @@ from django.forms import modelformset_factory
 # Create your views here.
 
 
+""" def index(request):
+
+    queryset = Imagen.objects.select_related('producto').all()
+
+    books = {}
+
+    for book in queryset:
+        books.append({'id': book.id,'nombreArchivo': book.nombreArchivo, 'productoTitulo': book.producto.titulo,'productoPrecio':book.producto.precio})
+
+    return render(request,'index.html',books) """
+""" 
+class index (ListView):
+    template_name='index.html'
+    context_object_name= 'product_list'
+    model = Producto """
+
+
+""" 
 def index(request):
-    all_items = Producto.objects.filter(promocion__gt=0)[0:9]
-    pics = []
-    for a in all_items:
-        images = Imagen.objects.filter(producto=a.pk)
-        pics.append(images)
+    images = Producto.objects.filter(promocion__gt=0)[0:9]
+    #pics = []
+    #images = Imagen.objects.select_related('producto').all()
+        #pics.append(images)
     #propert = Item.objects.filter(active=True)
+    #images= Producto.objects.select_related().all()
     context = {
-        'imagenes': pics,
-        'producto_promocion':all_items,
+        'imagenes': images,
+        #'producto_promocion':all_items,
     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'index.html', context) """
 
 
-
+class ImagenPrueba(DetailView):
+    model= Imagen
+    template_name='index.html'
+    def get_queryset(self):
+        return Imagen.objects.filter(producto=self.kwargs['pk'])
 
 # View para Filtrar los componentes del index: Promocion y Los mas Likeados
-""" class index(ListView):
+class index(ListView):
     model= Producto
     template_name= 'index.html'
     context_object_name= 'producto'
@@ -42,7 +64,7 @@ def index(request):
         context['producto_promocion']= productos
         context['imagenes']=imagenes
 
-        return context """
+        return context
 
 
 
@@ -59,11 +81,15 @@ def index(request):
 
 # Barra Dinamica de Categorias
 class MostrarCategoria(ListView):
-	model= Producto
-	template_name= 'categoria.html'
-	context_object_name='productoss'
-	def get_queryset(self):
-		return Producto.objects.filter(categoria=self.kwargs['pk'])
+    model= Producto
+    template_name= 'categoria.html'
+    context_object_name='productoss'
+    def get_context_data(self,**kwargs):
+        context= super().get_context_data(**kwargs)
+        context['productoss']= Producto.objects.filter(categoria=self.kwargs['pk'])
+        context['imageness']= Imagen.objects.select_related()
+        return context
+
 # Fin Barra Dinamica
 
 
@@ -106,12 +132,7 @@ class BuscarProducto (ListView):
 		return object_list
 ## Fin Busqueda
 
-""" class Carrito(TemplateView):
-    template_name='carrito.html'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['articulos'] = 'hola'
-        return context """
+
 
 ############################## Administradores######################################
 

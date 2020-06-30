@@ -2,16 +2,33 @@
 {% extends "mostrar_producto_imagen.html"}
 {% block title %} Bienvenidos! {% endblock%}
 
+
 {% block content %}
- 
+{% load static %}
+  {% include "carousel_principal.html" %}
 <br>
   {% include "carousel_ofertas.html" %}
   <hr>
-<div id="image-popups" class="grid">
-    {% for pic in imagenes %}
-      <div class="item">
-          <img class="lazy" src="{{ pic.nombreArchivo.url }}">
-      </div>
-    {% endfor %}
-</div>
+<br>
+<br>
+<br>
+
+{% for producto in product_list %}
+  {% for product_image in product.Imagen_set.all %}
+  entro
+  <img src="{{producto.nombreArchivo.url}}" alt="">
+  {% endfor %}
+{% endfor %}
+
+<!-- 
+  {% for a in imagenes %}
+  {% if a.producto == producto_promocion.id %}
+  {{a.producto.titulo}}
+
+  ----
+      <img src="{{a.nombreArchivo.url}}" alt="">
+  {% endif %}
+{% endfor %} -->
+
+
 {% endblock %}
