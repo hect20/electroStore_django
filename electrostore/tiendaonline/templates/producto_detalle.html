@@ -25,8 +25,8 @@
                         {% csrf_token %}
 						{% for imagen in imagenes %}
 						<li>
-							<img class="pic" src="{% static 'img/' %}{{imagen.nombreArchivo}}">
-							<img class="picbig" src="{% static 'img/' %}{{imagen.nombreArchivo}}">
+							<img class="pic" src="{{imagen.nombreArchivo.url}}">
+							<img class="picbig" src="{{imagen.nombreArchivo.url}}">
 						</li>
 						{% endfor %}
 					  </ul>

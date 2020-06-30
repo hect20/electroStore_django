@@ -52,17 +52,19 @@ class MostrarCategoria(ListView):
 
 # Detalle de un Producto, Precio Final, Descuento
 class ProductoDetalle(DetailView):
-	model= Producto
-	template_name= 'producto_detalle.html'
-	context_object_name= 'producto'
-	def get_context_data(self,**kwargs):
-		context= super().get_context_data(**kwargs)
-		producto= self.object
-		precioFinal= producto.precio - ((producto.precio * producto.promocion) / 100)
-		descuento= producto.precio != precioFinal
-		context['precioFinal']= precioFinal
-		context['descuento']= descuento
-		return context
+    model= Producto
+    template_name= 'producto_detalle.html'
+    context_object_name= 'producto'
+    def get_context_data(self,**kwargs):
+        context= super().get_context_data(**kwargs)
+        producto= self.object
+        precioFinal= producto.precio - ((producto.precio * producto.promocion) / 100)
+        descuento= producto.precio != precioFinal
+        context['imagenes']= Imagen.objects.filter(producto=self.kwargs['pk'])
+        context['precioFinal']= precioFinal
+        context['descuento']= descuento
+        return context
+
 ## Fin Detalle
 
 
