@@ -3,47 +3,14 @@
 {% block title %} Bienvenidos! {% endblock%}
 
 {% block content %}
-  <div id="carousel" class="carousel slide carousel-multi-item" data-ride="carousel">
-  
-    <div class="controls-top">
-      <a class="btn-floating waves-effect waves-light" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
-      <a class="btn-floating waves-effect waves-light" href="#multi-item-example" data-slide="next"><i class="fas fa-chevron-right"></i></a>
-    </div>
-      <!--Indicators-->
-      <ol class="carousel-indicators">
-        <li data-target="#carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel" data-slide-to="1"></li>
-        
-      </ol>
-      <!--/.Indicators-->
-    
-      <!--Slides-->
-      <div class="carousel-inner" role="listbox">
-    
-        <!--First slide-->
-        <div class="carousel-item active">
-          {% for producto in producto_promocion|slice:":4"  %} 
-               {% include "mostrar_producto_imagen.html" %}
+  {% include "carousel_principal.html" %}
+<br>
+  {% include "carousel_ofertas.html" %}
+  <hr>
 
-          {% endfor %}
-        </div>
-        <!--/.First slide-->
-        <div class="carousel-item">
-          {% for producto in producto_promocion|slice:"4:"  %} 
-              {% include "mostrar_producto_imagen.html" %}
-              
-          {% endfor %}
-          
-        </div>
-        <!--Second slide-->
-        <!--/.Second slide-->
-      </div>
-      <!--/.Slides-->
-    
-    </div>
-
-  </div>
-
-
+{% for producto in imagenes %}
+  {{producto.nombreArchivo}}
+  ---
+{% endfor %}
 
 {% endblock %}
