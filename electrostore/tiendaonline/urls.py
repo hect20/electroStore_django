@@ -35,7 +35,7 @@ urlpatterns = [
     path('producto_alta/<int:pk>/', views.ImagenCarga.as_view(), name='imagen_carga'),
 
     
-    path('carrito/<int:pk>',views.Carrito.as_view(), name='carrito'),
+    #path('carrito/<int:pk>',views.Carrito.as_view(), name='carrito'),
 
     
 

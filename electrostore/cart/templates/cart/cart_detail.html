@@ -29,6 +29,18 @@
       {% endfor %}
       
     </tbody>
+    
   </table>
+  <h3>Total: $ {{cart_total_amount}} </h3> 
+  <a class="btn btn-primary" onclick="confirmarBorrar();" href="{% url 'cart_clear' %}" role="button">Pagar</a>
 
+  <script>
+  function confirmarBorrar(event) {
+    let result = confirm("vamos a borrar");
+    if (!result) {
+      event.preventDefault();
+    }
+  }</script>
+  
+  
   {% endblock content %}

@@ -18,9 +18,13 @@ class index(ListView):
     context_object_name= 'producto'
     def get_context_data(self,**kwargs):
         context= super().get_context_data(**kwargs)
-        productos= Producto.objects.filter(promocion__gt=0)[0:8]
+        productos= Producto.objects.filter(promocion__gt=0)[0:9]
         #producto_promocion= Imagen.objects.filter(producto__id=producto)
+        imagenes= Imagen.objects.all()
+        #ofertas= productos.object.filter()
         context['producto_promocion']= productos
+        context['imagenes']=imagenes
+
         return context
 
 
@@ -82,12 +86,12 @@ class BuscarProducto (ListView):
 		return object_list
 ## Fin Busqueda
 
-class Carrito(TemplateView):
+""" class Carrito(TemplateView):
     template_name='carrito.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['articulos'] = 'hola'
-        return context
+        return context """
 
 ############################## Administradores######################################
 

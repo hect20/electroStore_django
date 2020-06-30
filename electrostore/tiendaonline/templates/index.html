@@ -43,5 +43,12 @@
     </div>
 
   </div>
-  
+{% load static %}
+{% for producto2 in imagenes %}
+aaa
+<img src="{{producto2.nombreArchivo.url}}" alt="">
+
+bbb
+{% endfor %}
+
 {% endblock %}
