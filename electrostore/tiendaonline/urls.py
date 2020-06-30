@@ -3,8 +3,8 @@ from tiendaonline import views
 
 
 urlpatterns = [
-    path('',views.index.as_view(), name='home'),
-
+    #path('',views.index.as_view(), name='home'),
+    path('',views.index, name='home'),
     #path('prueba/',views.Prueba_crispy.as_view(), name='prueba'),
     ##
     path('categorias/<int:pk>',views.MostrarCategoria.as_view(), name='categorias'),

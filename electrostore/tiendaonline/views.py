@@ -11,8 +11,25 @@ from django.forms import modelformset_factory
 # Create your views here.
 
 
+def index(request):
+    all_items = Producto.objects.filter(promocion__gt=0)[0:9]
+    pics = []
+    for a in all_items:
+        images = Imagen.objects.filter(producto=a.pk)
+        pics.append(images)
+    #propert = Item.objects.filter(active=True)
+    context = {
+        'imagenes': pics,
+        'producto_promocion':all_items,
+    }
+
+    return render(request, 'index.html', context)
+
+
+
+
 # View para Filtrar los componentes del index: Promocion y Los mas Likeados
-class index(ListView):
+""" class index(ListView):
     model= Producto
     template_name= 'index.html'
     context_object_name= 'producto'
@@ -25,7 +42,7 @@ class index(ListView):
         context['producto_promocion']= productos
         context['imagenes']=imagenes
 
-        return context
+        return context """
 
 
 
@@ -50,20 +67,23 @@ class MostrarCategoria(ListView):
 # Fin Barra Dinamica
 
 
-# Detalle de un Producto, Precio Final, Descuento
 class ProductoDetalle(DetailView):
-	model= Producto
-	template_name= 'producto_detalle.html'
-	context_object_name= 'producto'
-	def get_context_data(self,**kwargs):
-		context= super().get_context_data(**kwargs)
-		producto= self.object
-		precioFinal= producto.precio - ((producto.precio * producto.promocion) / 100)
-		descuento= producto.precio != precioFinal
-		context['precioFinal']= precioFinal
-		context['descuento']= descuento
-		return context
-## Fin Detalle
+    model= Producto
+    template_name= 'producto_detalle.html'
+    context_object_name= 'producto'
+
+    def get_context_data(self,**kwargs):
+        context= super().get_context_data(**kwargs)
+        producto= self.object
+        precioFinal= producto.precio - ((producto.precio*producto.promocion)/100)
+        descuento= producto.precio != precioFinal
+        context['imagenes']= Imagen.objects.filter(producto=self.kwargs['pk'])
+        context['precioFinal']=precioFinal
+        context['descuento']=descuento
+        return context
+
+# Detalle de un Producto, Precio Final, Descuento
+
 
 
 # Lista de Todos los Productos

@@ -3,9 +3,15 @@
 {% block title %} Bienvenidos! {% endblock%}
 
 {% block content %}
-  {% include "carousel_principal.html" %}
+ 
 <br>
   {% include "carousel_ofertas.html" %}
   <hr>
-
+<div id="image-popups" class="grid">
+    {% for pic in imagenes %}
+      <div class="item">
+          <img class="lazy" src="{{ pic.nombreArchivo.url }}">
+      </div>
+    {% endfor %}
+</div>
 {% endblock %}
